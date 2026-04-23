@@ -81,7 +81,7 @@ const Education = () => {
                   href="https://ieeexplore.ieee.org/document/11279051" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                  className="group flex flex-col sm:flex-row items-start sm:items-start justify-between gap-4"
                 >
                   <p className="text-slate-300 group-hover:text-purple-300 transition-colors italic leading-relaxed">
                     "Pipeline Hybridization of Autoencoder and Singular Value Decomposition for Multi-Criteria Recommender System"
