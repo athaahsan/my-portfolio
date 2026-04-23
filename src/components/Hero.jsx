@@ -136,7 +136,7 @@ const Hero = () => {
               </div>
 
               {/* OpenClaw - Top Center */}
-              <div className="absolute -top-6 md:-top-8 left-1/2 -translate-x-1/2 z-20">
+              <div className="absolute -top-10 md:-top-12 left-1/2 -translate-x-1/2 z-20">
                 <motion.div
                   animate={{ y: [-8, 8, -8] }}
                   transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut", delay: 2 }}
@@ -148,7 +148,7 @@ const Hero = () => {
               </div>
 
               {/* OpenRouter - Bottom Center */}
-              <div className="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 z-20">
+              <div className="absolute -bottom-10 md:-bottom-12 left-1/2 -translate-x-1/2 z-20">
                 <motion.div
                   animate={{ y: [8, -8, 8] }}
                   transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 1.2 }}
