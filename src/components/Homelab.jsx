@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion';
-import { Server, Cpu, Network, Rocket, Wrench, TerminalSquare, Cloud, Shield, Terminal } from 'lucide-react';
+import { Rocket, Wrench, Terminal } from 'lucide-react';
+import n8nLogo from '../assets/n8n.svg';
+import openclawLogo from '../assets/openclaw-dark.svg';
+import dockerLogo from '../assets/docker.svg';
+import nextcloudLogo from '../assets/nextcloud.svg';
+import tailscaleLogo from '../assets/tailscale-light.svg';
 
 const tools = [
-  { name: "n8n", description: "Workflow Automation", icon: <Network size={20} className="text-rose-400" /> },
-  { name: "OpenClaw", description: "Agentic AI Tools", icon: <TerminalSquare size={20} className="text-purple-400" /> },
-  { name: "Docker", description: "Containerization", icon: <Cpu size={20} className="text-blue-400" /> },
-  { name: "Nextcloud", description: "Local Cloud Storage", icon: <Cloud size={20} className="text-sky-400" /> },
-  { name: "Tailscale", description: "Secure Network", icon: <Shield size={20} className="text-emerald-400" /> },
+  { name: "n8n", description: "Workflow Automation", icon: <img src={n8nLogo} alt="n8n" className="w-5 h-5 object-contain" /> },
+  { name: "OpenClaw", description: "Agentic AI Tools", icon: <img src={openclawLogo} alt="OpenClaw" className="w-5 h-5 object-contain" /> },
+  { name: "Docker", description: "Containerization", icon: <img src={dockerLogo} alt="Docker" className="w-5 h-5 object-contain" /> },
+  { name: "Nextcloud", description: "Local Cloud Storage", icon: <img src={nextcloudLogo} alt="Nextcloud" className="w-5 h-5 object-contain" /> },
+  { name: "Tailscale", description: "Secure Network", icon: <img src={tailscaleLogo} alt="Tailscale" className="w-5 h-5 object-contain" /> },
   { name: "SSH", description: "Remote Access", icon: <Terminal size={20} className="text-slate-400" /> },
 ];
 
