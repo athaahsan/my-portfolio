@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-5'}`}>
       {/* Background layer to avoid backdrop-filter nesting bug */}
-      <div className={`absolute inset-0 transition-all duration-300 ${isScrolled ? 'glass-nav shadow-lg' : 'bg-transparent'}`}></div>
+      <div className={`absolute inset-0 transition-all duration-300 ${isScrolled ? 'bg-slate-900/80 backdrop-blur-md border-b border-white/10 shadow-lg' : 'bg-transparent'}`}></div>
       
       <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         <div className="flex items-center justify-between">
@@ -59,7 +59,7 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden glass-card mt-4 rounded-2xl p-4 flex flex-col gap-4 absolute left-4 right-4"
+            className="md:hidden bg-slate-800/90 backdrop-blur-lg border border-white/10 mt-4 rounded-2xl p-4 flex flex-col gap-4 absolute left-4 right-4 shadow-2xl"
           >
             {navLinks.map((link) => (
               <a
