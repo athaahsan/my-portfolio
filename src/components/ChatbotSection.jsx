@@ -1,3 +1,5 @@
+import userInfo from "../userInfo.js"
+
 import { motion } from 'framer-motion';
 import { Bot, ArrowUp, User, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
@@ -57,6 +59,8 @@ const ChatbotSection = () => {
     // Force scroll to bottom when sending a message
     setTimeout(scrollToBottom, 50);
 
+    let aiFullResponse = "";
+
     try {
       const response = await fetch('/aiResponse', {
         method: 'POST',
@@ -79,7 +83,6 @@ const ChatbotSection = () => {
       const decoder = new TextDecoder("utf-8");
       let buffer = "";
       let isDone = false;
-      let aiFullResponse = "";
 
       while (!isDone) {
         const { done, value } = await reader.read();
@@ -125,6 +128,7 @@ const ChatbotSection = () => {
       });
     } finally {
       setIsLoading(false);
+      userInfo(userName, userMessage, aiFullResponse, "");
     }
   };
 
@@ -268,6 +272,8 @@ const ChatbotSection = () => {
                     e.target.style.height = `${Math.min(e.target.scrollHeight, 150)}px`;
                   }}
                   onKeyDown={(e) => {
+                    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+                    if (isTouchDevice) return;
                     if (e.key === 'Enter' && !e.shiftKey) {
                       e.preventDefault();
                       handleSend(e);
