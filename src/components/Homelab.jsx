@@ -43,10 +43,10 @@ const Homelab = () => {
               The Sandbox
             </h3>
             <p className="text-slate-300 text-lg leading-relaxed mb-6">
-              I run a small homelab on a dedicated mini PC where I experiment with self-hosted systems and applications. It's my personal sandbox for exploring infrastructure, containerization, and backend services.
+              My homelab is a dedicated mini PC sandbox for exploring self-hosted infrastructure and backend services.
             </p>
             <p className="text-slate-300 text-lg leading-relaxed mb-6">
-              Currently, I host tools like <span className="text-rose-400 font-semibold">n8n</span> and <span className="text-purple-400 font-semibold">OpenClaw</span> locally, mainly for building, testing, and iterating on automation and AI workflows before deploying them to production. I also run <span className="text-sky-400 font-semibold">Nextcloud</span> as my personal "local Google Drive", and securely access everything on the go via <span className="text-emerald-400 font-semibold">SSH</span> and <span className="text-emerald-400 font-semibold">Tailscale</span>.
+              I use it to build and test <span className="text-rose-400 font-semibold">n8n</span> and <span className="text-purple-400 font-semibold">OpenClaw</span> workflows, run <span className="text-sky-400 font-semibold">Nextcloud</span> for storage, and connect remotely via <span className="text-emerald-400 font-semibold">SSH</span> and <span className="text-emerald-400 font-semibold">Tailscale</span>.
             </p>
             <p className="text-slate-300 text-lg leading-relaxed flex items-start sm:items-center justify-center lg:justify-start gap-2">
               <Rocket className="text-emerald-400 shrink-0 mt-1 sm:mt-0" size={20} />

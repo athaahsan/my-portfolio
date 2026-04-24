@@ -8,7 +8,7 @@ const experiences = [
     date: "Jan 2026 – Present",
     type: "Contract",
     highlights: [
-      "Designed and maintained n8n-based automation workflows for SaaS products and internal operations, including integration with Google Apps Script for dynamic, user-specific credential handling.",
+      "Designed and maintained n8n-based automation workflows for SaaS products and internal operations.",
       "Integrated LLM capabilities into automation workflows, performing prompt engineering and AI-driven logic.",
       "Configured OpenClaw to enable agentic AI assistance across internal teams, supporting task execution and decision-making processes."
     ]
