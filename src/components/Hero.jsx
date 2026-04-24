@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, ChevronDown, Terminal, ArrowRight, Sparkles } from 'lucide-react';
 import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
-import profilePic from '../assets/athaPic6.jpeg';
+import profilePic from '../assets/athaPic7.jpeg';
 import openclawLogo from '../assets/openclaw-dark.svg';
 import reactLogo from '../assets/reactjs.svg';
 import tailwindLogo from '../assets/tailwind.svg';
@@ -75,7 +75,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex-1 hidden md:flex justify-center items-center"
           >
-            <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
+            <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
               <div className="relative w-full h-full rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600 p-1.5 shadow-[0_0_40px_rgba(14,165,233,0.3)] z-10 group">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600 blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
                 <div className="relative w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden border-[6px] border-slate-900">

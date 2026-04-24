@@ -9,7 +9,7 @@ const projects = [
     title: "Personal Chatbot",
     icon: <Bot size={28} className="text-sky-400" />,
     description: "A personal AI assistant chatbot that answers questions about myself and general queries, integrating web search, multimodal input, and real-time streaming responses.",
-    tech: ["React.js", "Tailwind", "DaisyUI", "OpenRouter (LLM)", "n8n"],
+    tech: ["React.js", "Tailwind", "DaisyUI", "OpenRouter", "n8n"],
     joke: "Built during a phase where I had a lot more free time than usual (just broke up with my gf).",
     links: [
       {
