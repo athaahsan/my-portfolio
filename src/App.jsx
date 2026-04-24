@@ -6,6 +6,7 @@ import Projects from './components/Projects'
 import Homelab from './components/Homelab'
 import Certificates from './components/Certificates'
 import Skills from './components/Skills'
+import ChatbotSection from './components/ChatbotSection'
 import Footer from './components/Footer'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Education />
         <Certificates />
         <Skills />
+        <ChatbotSection />
       </main>
       <Footer />
     </div>
