@@ -17,10 +17,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Homelab', href: '#homelab' },
-    { name: 'Education', href: '#education' },
-    { name: 'Certificates', href: '#certificates' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Chat', href: '#chatbot' },
   ];
 
   return (
@@ -46,6 +43,14 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <a 
+              href="https://drive.google.com/file/d/1VJhL5kHJY8bVxoUfMLlK6E-aJ1vW0-hR/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-sm font-bold py-2 px-5 rounded-full shadow-lg shadow-sky-500/20 transition-all hover:-translate-y-0.5 border border-sky-400/20"
+            >
+              Download CV
+            </a>
           </div>
 
           {/* Mobile Nav Toggle */}
@@ -71,6 +76,16 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
+            <div className="h-px w-full bg-slate-700/50 my-1"></div>
+            <a
+              href="https://drive.google.com/file/d/1VJhL5kHJY8bVxoUfMLlK6E-aJ1vW0-hR/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="text-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-3 px-5 rounded-xl shadow-lg shadow-sky-500/20 transition-all border border-sky-400/20"
+            >
+              Download CV
+            </a>
           </motion.div>
         )}
       </div>
