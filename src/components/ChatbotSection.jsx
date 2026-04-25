@@ -320,7 +320,7 @@ const ChatbotSection = () => {
                 />
                 <button
                   type="submit"
-                  disabled={!inputText.trim() || isLoading || inputText.length > maxLength}
+                  disabled={!inputText.trim() || isLoading || inputText.length >= maxLength}
                   className="absolute right-3 bottom-3 p-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl hover:from-sky-400 hover:to-blue-500 transition-all disabled:opacity-50 disabled:hover:from-sky-500 disabled:hover:to-blue-600 shadow-md hover:shadow-sky-500/25 group flex-shrink-0"
                 >
                   <ArrowUp size={22} strokeWidth={1.5} className="transform group-hover:-translate-y-0.5 transition-transform" />
