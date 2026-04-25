@@ -29,14 +29,14 @@ const Education = () => {
             {/* Background Glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
-            <div className="flex flex-col md:flex-row justify-between items-start gap-6 relative z-10">
-              <div className="flex items-start gap-3 md:gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-6 relative z-10">
+              <div className="flex flex-col md:flex-row items-start gap-4">
                 <div className="p-3 md:p-4 bg-purple-500/20 rounded-2xl text-purple-400 shrink-0">
-                  <GraduationCap className="w-6 h-6 md:w-8 md:h-8" />
+                  <GraduationCap className="w-8 h-8" />
                 </div>
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1">Telkom University</h3>
-                  <p className="text-base md:text-lg text-purple-400 font-medium mb-2">Bachelor of Informatics</p>
+                  <h3 className="text-2xl font-bold text-white mb-1">Telkom University</h3>
+                  <p className="text-lg text-purple-400 font-medium mb-2">Bachelor of Informatics</p>
                   <div className="flex flex-col gap-2">
                     <div className="text-slate-400 flex items-center flex-wrap gap-2">
                       <Award size={16} />
