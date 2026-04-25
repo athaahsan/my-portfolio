@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GraduationCap, Award, ExternalLink, Info } from 'lucide-react';
+import { GraduationCap, Award, ExternalLink, Info, Calendar, ChevronDown } from 'lucide-react';
 
 const Education = () => {
   const [showJoke, setShowJoke] = useState(false);
@@ -9,7 +9,7 @@ const Education = () => {
   return (
     <section id="education" className="py-20 relative bg-slate-900/50">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -20,7 +20,7 @@ const Education = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -30,18 +30,18 @@ const Education = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
             <div className="flex flex-col md:flex-row justify-between items-start gap-6 relative z-10">
-              <div className="flex items-start gap-4">
-                <div className="p-4 bg-purple-500/20 rounded-2xl text-purple-400">
-                  <GraduationCap size={32} />
+              <div className="flex items-start gap-3 md:gap-4">
+                <div className="p-3 md:p-4 bg-purple-500/20 rounded-2xl text-purple-400 shrink-0">
+                  <GraduationCap className="w-6 h-6 md:w-8 md:h-8" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-1">Telkom University</h3>
-                  <p className="text-lg text-purple-400 font-medium mb-2">Bachelor of Informatics</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-1">Telkom University</h3>
+                  <p className="text-base md:text-lg text-purple-400 font-medium mb-2">Bachelor of Informatics</p>
                   <div className="flex flex-col gap-2">
                     <div className="text-slate-400 flex items-center flex-wrap gap-2">
                       <Award size={16} />
                       GPA: 3.9/4.0 - <span className="text-white italic">Cum Laude</span>
-                      <button 
+                      <button
                         onClick={() => setShowJoke(!showJoke)}
                         className={`ml-1 p-1 rounded-full transition-all focus:outline-none ${showJoke ? 'bg-purple-500/20 text-purple-400 rotate-12' : 'bg-slate-800 text-slate-400 hover:text-purple-400 hover:bg-slate-700'}`}
                         title="The truth hurts..."
@@ -68,19 +68,21 @@ const Education = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-slate-800/80 px-4 py-2 rounded-lg border border-slate-700 text-slate-300 font-medium whitespace-nowrap mt-2 md:mt-0">
-                Aug 2021 – Aug 2025
+              <div className="flex items-center gap-2 text-slate-400 font-medium whitespace-nowrap mt-2 md:mt-0">
+                <Calendar size={18} className="text-purple-400/70" />
+                <span>Aug 2021 – Aug 2025</span>
               </div>
             </div>
 
-            <div className="mt-8 pt-8 border-t border-slate-700/50 relative z-10">
+            <div className="mt-8 pt-8 relative z-10">
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-slate-700/80 via-slate-700/40 to-transparent"></div>
               <h4 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                 Thesis / Research
               </h4>
               <div className="bg-slate-800/50 p-5 rounded-xl border border-slate-700/50 hover:border-purple-500/30 transition-colors">
-                <a 
-                  href="https://ieeexplore.ieee.org/document/11279051" 
-                  target="_blank" 
+                <a
+                  href="https://ieeexplore.ieee.org/document/11279051"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="group flex flex-col sm:flex-row items-start sm:items-start justify-between gap-4"
                 >
@@ -91,13 +93,18 @@ const Education = () => {
                     <ExternalLink size={16} /> IEEE Xplore
                   </span>
                 </a>
-                
-                <div className="mt-5 pt-4 border-t border-slate-700/50">
+
+                <div className="mt-5 pt-4 flex flex-col relative">
+
                   <button
                     onClick={() => setShowCertificate(!showCertificate)}
-                    className="flex items-center gap-2 px-4 py-2 bg-slate-800/80 text-slate-300 text-sm font-medium rounded-lg hover:bg-purple-500/20 hover:text-purple-300 hover:border-purple-500/50 transition-all focus:outline-none border border-slate-700"
+                    className="group self-start flex items-center gap-2 py-1 text-sm font-medium text-slate-400 hover:text-purple-300 transition-colors focus:outline-none"
                   >
-                    {showCertificate ? "Hide Details" : "View Details"}
+                    <span className="relative">
+                      {showCertificate ? "Hide Details" : "View Details"}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-purple-400/60 group-hover:w-full transition-all duration-300"></span>
+                    </span>
+                    <ChevronDown size={16} className={`transition-transform duration-300 ${showCertificate ? "rotate-180 text-purple-400" : ""}`} />
                   </button>
                   <AnimatePresence>
                     {showCertificate && (
@@ -112,9 +119,9 @@ const Education = () => {
                             Presented virtually at <span className="text-slate-300 font-medium">ICSECS 2025</span> (IEEE 9th International Conference on Software Engineering & Computer Systems), hosted in Pekan, Pahang, Malaysia.
                           </p>
                           <div className="rounded-xl overflow-hidden border border-slate-700/50 shadow-lg shadow-purple-500/10 bg-slate-900/50 p-2">
-                            <img 
-                              src="https://raw.githubusercontent.com/athaahsan/personal-chatbot/refs/heads/main/src/assets/icsecs25-certificate_page-0001.jpg" 
-                              alt="ICSECS 2025 Presenter Certificate" 
+                            <img
+                              src="https://raw.githubusercontent.com/athaahsan/personal-chatbot/refs/heads/main/src/assets/icsecs25-certificate_page-0001.jpg"
+                              alt="ICSECS 2025 Presenter Certificate"
                               className="w-full h-auto rounded-lg object-cover"
                               loading="lazy"
                             />

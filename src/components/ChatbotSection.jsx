@@ -1,6 +1,6 @@
 import userInfo from "../userInfo.js"
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, ArrowUp, User, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from "react-markdown";
@@ -24,6 +24,9 @@ const ChatbotSection = () => {
   ]);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
+  const textareaRef = useRef(null);
+
+  const maxLength = 1000;
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -52,6 +55,11 @@ const ChatbotSection = () => {
     setMessages(newMessages);
     setInputText("");
     setIsLoading(true);
+
+    // Reset textarea height
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
 
     // Add empty AI placeholder
     setMessages((prev) => [...prev, { role: "ai", content: "" }]);
@@ -148,12 +156,12 @@ const ChatbotSection = () => {
           </p>
           <div className="mt-8 inline-flex items-center gap-3 bg-slate-900/60 backdrop-blur-md border border-slate-700/50 shadow-lg rounded-full px-6 py-2.5 hover:border-sky-500/30 transition-all focus-within:border-sky-500/50 focus-within:shadow-[0_0_15px_rgba(14,165,233,0.15)]">
             <span className="text-slate-400 text-sm">Chatting as:</span>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              placeholder="Guest" 
-              className="bg-transparent border-none text-sky-400 font-semibold focus:outline-none w-32 placeholder-sky-400/30" 
+              placeholder="Guest"
+              className="bg-transparent border-none text-sky-400 font-semibold focus:outline-none w-32 placeholder-sky-400/30"
             />
           </div>
         </motion.div>
@@ -211,11 +219,13 @@ const ChatbotSection = () => {
                   className={`flex items-start gap-3 md:gap-4 ${msg.role === 'user' ? 'justify-end' : 'justify-start w-full'}`}
                 >
                   <div className={`${msg.role === 'user'
-                      ? 'max-w-[85%] md:max-w-[75%] rounded-2xl py-3 px-4 text-sm md:text-base shadow-lg bg-gradient-to-br from-sky-500 to-blue-600 text-white rounded-tr-sm border border-sky-400/30'
-                      : 'w-full text-slate-200 text-sm md:text-base py-1 px-1 md:px-2'
+                    ? 'max-w-[85%] md:max-w-[75%] rounded-2xl py-3 px-4 text-sm md:text-base shadow-lg bg-gradient-to-br from-sky-500 to-blue-600 text-white rounded-tr-sm border border-sky-400/30'
+                    : 'w-full text-slate-200 text-sm md:text-base py-1 px-1 md:px-2'
                     }`}>
                     {msg.role === 'user' ? (
-                      msg.content
+                      <div className='whitespace-pre-wrap'>
+                        {msg.content.trim()}
+                      </div>
                     ) : (
                       msg.content === "" && idx === messages.length - 1 ? (
                         <div className="flex items-center gap-1.5 h-6">
@@ -250,21 +260,44 @@ const ChatbotSection = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Scroll down button */}
-            {showScrollDown && (
-              <button
-                onClick={scrollToBottom}
-                className="absolute bottom-28 right-1/2 translate-x-1/2 md:translate-x-0 md:right-8 z-30 p-2 bg-slate-800/80 backdrop-blur-md border border-slate-600/50 rounded-full text-sky-400 shadow-[0_4px_15px_rgba(0,0,0,0.3)] hover:bg-slate-700/80 hover:text-sky-300 transition-all animate-bounce"
-                aria-label="Scroll to bottom"
-              >
-                <ChevronDown size={24} />
-              </button>
-            )}
-
             {/* Input area */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-20 pointer-events-none">
-              <form onSubmit={handleSend} className="relative flex items-end max-w-4xl mx-auto bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.3)] rounded-3xl p-2 pointer-events-auto transition-all duration-300 focus-within:bg-slate-800/80 focus-within:border-sky-500/50 focus-within:shadow-[0_8px_30px_rgba(14,165,233,0.15)]">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 z-20 pointer-events-none flex flex-col items-center">
+
+              {/* Scroll down button */}
+              <AnimatePresence>
+                {showScrollDown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="w-full max-w-4xl mx-auto flex justify-center md:justify-end mb-4 pointer-events-auto px-2"
+                  >
+                    <button
+                      onClick={scrollToBottom}
+                      className="p-2 bg-slate-800/80 backdrop-blur-md border border-slate-600/50 rounded-full text-sky-400 shadow-[0_4px_15px_rgba(0,0,0,0.3)] hover:bg-slate-700/80 hover:text-sky-300 transition-all animate-bounce"
+                      aria-label="Scroll to bottom"
+                    >
+                      <ChevronDown size={24} />
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <form onSubmit={handleSend} className="w-full relative flex items-end max-w-4xl mx-auto bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 shadow-[0_8px_30px_rgb(0,0,0,0.3)] rounded-3xl p-2 pointer-events-auto transition-all duration-300 focus-within:bg-slate-800/80 focus-within:border-sky-500/50 focus-within:shadow-[0_8px_30px_rgba(14,165,233,0.15)]">
+                <AnimatePresence>
+                  {inputText.length >= maxLength - 50 && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute -top-10 right-4 bg-rose-500/90 text-white font-medium text-xs px-3 py-1.5 rounded-lg shadow-lg shadow-rose-500/20 border border-rose-400/50 backdrop-blur-md pointer-events-none"
+                    >
+                      {inputText.length >= maxLength ? "Maximum length reached" : `${maxLength - inputText.length} characters remaining`}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
                 <textarea
+                  ref={textareaRef}
                   value={inputText}
                   onChange={(e) => {
                     setInputText(e.target.value);
@@ -281,12 +314,13 @@ const ChatbotSection = () => {
                   }}
                   placeholder="Ask me anything..."
                   rows={1}
+                  maxLength={maxLength}
                   className="w-full bg-transparent resize-none py-3 pl-4 pr-14 text-white placeholder-slate-400 focus:outline-none custom-scrollbar"
                   style={{ minHeight: '48px', maxHeight: '150px' }}
                 />
                 <button
                   type="submit"
-                  disabled={!inputText.trim() || isLoading}
+                  disabled={!inputText.trim() || isLoading || inputText.length > maxLength}
                   className="absolute right-3 bottom-3 p-2 bg-gradient-to-r from-sky-500 to-blue-600 text-white rounded-xl hover:from-sky-400 hover:to-blue-500 transition-all disabled:opacity-50 disabled:hover:from-sky-500 disabled:hover:to-blue-600 shadow-md hover:shadow-sky-500/25 group flex-shrink-0"
                 >
                   <ArrowUp size={22} strokeWidth={1.5} className="transform group-hover:-translate-y-0.5 transition-transform" />

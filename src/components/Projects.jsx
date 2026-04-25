@@ -10,7 +10,7 @@ const projects = [
     icon: <Bot size={28} className="text-sky-400" />,
     description: "A personal AI assistant chatbot that answers questions about myself and general queries, integrating web search, multimodal input, and real-time streaming responses.",
     tech: ["React.js", "Tailwind", "DaisyUI", "OpenRouter", "n8n"],
-    joke: "Built during a phase where I had a lot more free time than usual (freshly graduated and unemployed).",
+    joke: "Built during a phase where I had a lot more free time than usual (just broke up with my gf).",
     links: [
       {
         type: "demo",
@@ -43,11 +43,11 @@ const projects = [
     gradient: "from-purple-500/20 to-pink-500/20"
   },
   {
-    title: "Video Clipping Automation System",
+    title: "Video Clipping Automation",
     icon: <Video size={28} className="text-emerald-400" />,
     description: "An automated video clipping pipeline using n8n to retrieve Twitch content, process clips into short-form videos with FFmpeg, and generate synchronized subtitles with ElevenLabs API.",
     tech: ["n8n", "FFmpeg", "Twitch API", "ElevenLabs API"],
-    joke: "Built after repeatedly seeing “auto clipping” ads, I decided to build my own instead.",
+    joke: "Built after repeatedly seeing “auto clipping” ads, I decided to try and build my own instead.",
     links: [
       {
         type: "youtube",
@@ -125,7 +125,7 @@ const Projects = () => {
               transition={{ delay: index * 0.2 }}
               className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full border border-slate-700/50 hover:border-slate-500/50 transition-colors"
             >
-              <div className={`h-32 bg-gradient-to-br ${project.gradient} p-8 flex items-end relative overflow-hidden`}>
+              <div className={`h-24 bg-gradient-to-br ${project.gradient} pl-8 py-5 flex items-end relative overflow-hidden`}>
                 <div className="absolute -top-10 -right-10 opacity-20 transform group-hover:scale-110 transition-transform duration-500">
                   {project.icon}
                 </div>
