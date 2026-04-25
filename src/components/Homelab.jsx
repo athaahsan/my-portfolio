@@ -46,7 +46,7 @@ const Homelab = () => {
               My homelab is a dedicated mini PC sandbox for exploring self-hosted infrastructure and backend services.
             </p>
             <p className="text-slate-300 text-lg leading-relaxed mb-6">
-              I use it to build and test <span className="text-rose-400 font-semibold">n8n</span> and <span className="text-purple-400 font-semibold">OpenClaw</span> workflows, run <span className="text-sky-400 font-semibold">Nextcloud</span> for storage, and connect remotely via <span className="text-emerald-400 font-semibold">SSH</span> and <span className="text-emerald-400 font-semibold">Tailscale</span>.
+              Currently, I'm using it to build and test <span className="text-rose-400 font-semibold">n8n</span> and <span className="text-purple-400 font-semibold">OpenClaw</span> workflows, run <span className="text-sky-400 font-semibold">Nextcloud</span> for storage, and connect remotely via <span className="text-emerald-400 font-semibold">SSH</span> and <span className="text-emerald-400 font-semibold">Tailscale</span>.
             </p>
             <p className="text-slate-300 text-lg leading-relaxed flex items-start sm:items-center justify-center lg:justify-start gap-2">
               <Rocket className="text-emerald-400 shrink-0 mt-1 sm:mt-0" size={20} />

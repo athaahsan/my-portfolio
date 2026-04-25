@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-5'}`}>
       {/* Background layer to avoid backdrop-filter nesting bug */}
       <div className={`absolute inset-0 transition-all duration-300 ${isScrolled ? 'bg-slate-900/80 backdrop-blur-md border-b border-white/10 shadow-lg' : 'bg-transparent'}`}></div>
-      
+
       <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 text-xl font-bold text-white hover:text-sky-400 transition-colors">
@@ -43,11 +43,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <a 
+            <a
               href="https://drive.google.com/file/d/1VJhL5kHJY8bVxoUfMLlK6E-aJ1vW0-hR/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-sm font-bold py-2 px-5 rounded-full shadow-lg shadow-sky-500/20 transition-all hover:-translate-y-0.5 border border-sky-400/20"
+              className="flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-sm font-semibold py-2 px-5 rounded-full shadow-lg shadow-sky-500/20 transition-all hover:-translate-y-0.5 border border-sky-400/20"
             >
               Download CV
             </a>

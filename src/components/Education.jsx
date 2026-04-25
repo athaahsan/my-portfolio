@@ -4,6 +4,7 @@ import { GraduationCap, Award, ExternalLink, Info } from 'lucide-react';
 
 const Education = () => {
   const [showJoke, setShowJoke] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
 
   return (
     <section id="education" className="py-20 relative bg-slate-900/50">
@@ -86,13 +87,43 @@ const Education = () => {
                   <p className="text-slate-300 group-hover:text-purple-300 transition-colors italic leading-relaxed">
                     "Pipeline Hybridization of Autoencoder and Singular Value Decomposition for Multi-Criteria Recommender System"
                   </p>
-                  <span className="p-2 bg-purple-500/20 text-purple-400 rounded-lg group-hover:bg-purple-500 group-hover:text-white transition-all shrink-0">
-                    <ExternalLink size={18} />
+                  <span className="flex items-center gap-2 px-4 py-2 bg-purple-500/20 text-purple-400 font-semibold rounded-lg group-hover:bg-purple-500 group-hover:text-white transition-all shrink-0 text-sm">
+                    <ExternalLink size={16} /> IEEE Xplore
                   </span>
                 </a>
-                <p className="text-sm text-slate-400 mt-4">
-                  Presented virtually at ICSECS 2025 (IEEE 9th International Conference on Software Engineering & Computer Systems), hosted in Pekan, Pahang, Malaysia.
-                </p>
+                
+                <div className="mt-5 pt-4 border-t border-slate-700/50">
+                  <button
+                    onClick={() => setShowCertificate(!showCertificate)}
+                    className="flex items-center gap-2 px-4 py-2 bg-slate-800/80 text-slate-300 text-sm font-medium rounded-lg hover:bg-purple-500/20 hover:text-purple-300 hover:border-purple-500/50 transition-all focus:outline-none border border-slate-700"
+                  >
+                    {showCertificate ? "Hide Details" : "View Details"}
+                  </button>
+                  <AnimatePresence>
+                    {showCertificate && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 space-y-4">
+                          <p className="text-sm text-slate-400 bg-slate-900/50 p-4 rounded-xl border border-slate-700/50 leading-relaxed">
+                            Presented virtually at <span className="text-slate-300 font-medium">ICSECS 2025</span> (IEEE 9th International Conference on Software Engineering & Computer Systems), hosted in Pekan, Pahang, Malaysia.
+                          </p>
+                          <div className="rounded-xl overflow-hidden border border-slate-700/50 shadow-lg shadow-purple-500/10 bg-slate-900/50 p-2">
+                            <img 
+                              src="https://raw.githubusercontent.com/athaahsan/personal-chatbot/refs/heads/main/src/assets/icsecs25-certificate_page-0001.jpg" 
+                              alt="ICSECS 2025 Presenter Certificate" 
+                              className="w-full h-auto rounded-lg object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
 
