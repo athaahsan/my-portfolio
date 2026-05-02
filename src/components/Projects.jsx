@@ -10,7 +10,7 @@ const projects = [
     icon: <Bot size={28} className="text-sky-400" />,
     description: "A personal AI assistant chatbot that answers questions about myself and general queries, integrating web search, multimodal input, and real-time streaming responses.",
     tech: ["React.js", "Tailwind CSS", "DaisyUI", "OpenRouter", "n8n", "Netlify"],
-    joke: "Built during a phase where I had a lot more free time than usual (unemployment after graduation).",
+    joke: "Built during a phase where I had a lot more free time than usual (unemployment after graduation lol).",
     links: [
       {
         type: "demo",
@@ -26,6 +26,7 @@ const projects = [
     icon: <LineChart size={28} className="text-purple-400" />,
     description: "A real-time cryptocurrency dashboard with an AI Insight module that analyzes technical indicators and market sentiment to generate a structured daily market bias.",
     tech: ["React.js", "Tailwind CSS", "DaisyUI", "Google Apps Script", "OpenRouter", "Netlify"],
+    joke: "Initially it was a Streamlit project deployed on Streamlit Cloud, but then I got tired of its auto-sleep mechanism putting my dashboard to bed every few hours, so I made the React version.",
     links: [
       {
         type: "demo",
