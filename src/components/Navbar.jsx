@@ -49,7 +49,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white text-sm font-semibold py-2 px-5 rounded-full shadow-lg shadow-sky-500/20 transition-all hover:-translate-y-0.5 border border-sky-400/20"
             >
-              Download CV
+              My CV
             </a>
           </div>
 
@@ -84,7 +84,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className="text-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-3 px-5 rounded-xl shadow-lg shadow-sky-500/20 transition-all border border-sky-400/20"
             >
-              Download CV
+              My CV
             </a>
           </motion.div>
         )}
