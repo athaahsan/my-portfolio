@@ -1,16 +1,32 @@
-# React + Vite
+# My Portfolio — [athaahsan.com](https://athaahsan.com)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio website built with React and Vite, featuring a dark glassmorphism aesthetic, smooth animations, and an integrated AI chatbot.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Hero Section** — Animated orbital logo, typing effect, and a quick intro
+- **Skills** — Tech stack overview
+- **Experience** — Work history timeline
+- **Education & Certificates** — Academic background and presentation certificates carousel
+- **Projects** — Featured projects with tech tags, live demo links, and little behind-the-scenes jokes
+- **Homelab** — Personal self-hosted infrastructure setup
+- **AI Chatbot** — A personal assistant that answers questions about me, powered by OpenRouter with real-time streaming, web search, and multimodal input
+- **Responsive** — Fully optimized for mobile, tablet, and desktop
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Category | Technologies |
+|---|---|
+| Framework | React 19, Vite 8 |
+| Styling | Tailwind CSS v4, DaisyUI v5 |
+| Animations | Framer Motion |
+| Icons | Lucide React, React Icons |
+| Markdown | react-markdown, remark-gfm, remark-math, rehype-highlight |
+| Backend | Netlify Edge Functions, Netlify Functions |
+| AI | OpenRouter API |
 
-## Expanding the ESLint configuration
+## 🌐 Deployment
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Deployed on **Netlify** with automatic builds from the main branch.
+
+Live at: **[athaahsan.com](https://athaahsan.com)**
