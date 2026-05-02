@@ -9,8 +9,8 @@ const projects = [
     title: "Personal Chatbot",
     icon: <Bot size={28} className="text-sky-400" />,
     description: "A personal AI assistant chatbot that answers questions about myself and general queries, integrating web search, multimodal input, and real-time streaming responses.",
-    tech: ["React.js", "Tailwind", "DaisyUI", "OpenRouter", "n8n"],
-    joke: "Built during a phase where I had a lot more free time than usual (just broke up with my gf).",
+    tech: ["React.js", "Tailwind CSS", "DaisyUI", "OpenRouter", "n8n", "Netlify"],
+    joke: "Built during a phase where I had a lot more free time than usual (unemployment after graduation).",
     links: [
       {
         type: "demo",
@@ -25,11 +25,11 @@ const projects = [
     title: "Crypto Dashboard",
     icon: <LineChart size={28} className="text-purple-400" />,
     description: "A real-time cryptocurrency dashboard with an AI Insight module that analyzes technical indicators and market sentiment to generate a structured daily market bias.",
-    tech: ["Streamlit", "Python", "Google Apps Script", "OpenRouter", "Telegram API"],
+    tech: ["React.js", "Tailwind CSS", "DaisyUI", "Google Apps Script", "OpenRouter", "Netlify"],
     links: [
       {
         type: "demo",
-        url: "https://atha-crypto-dashboard.streamlit.app/",
+        url: "https://crypto.athaahsan.com/",
         label: "Live Demo",
         primary: true
       },
