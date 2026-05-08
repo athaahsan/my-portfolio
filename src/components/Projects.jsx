@@ -44,10 +44,10 @@ const projects = [
     gradient: "from-purple-500/20 to-pink-500/20"
   },
   {
-    title: "Video Clipping Automation",
+    title: "Short-Form Video Automation",
     icon: <Video size={28} className="text-emerald-400" />,
-    description: "An automated video clipping pipeline using n8n to retrieve Twitch content, process clips into short-form videos with FFmpeg, and generate synchronized subtitles with ElevenLabs API.",
-    tech: ["n8n", "FFmpeg", "Twitch API", "ElevenLabs API"],
+    description: "An automated pipeline that collects Twitch clips, processes them into short-form videos with FFmpeg, and generates synchronized subtitles using Groq API.",
+    tech: ["n8n", "FFmpeg", "Twitch API", "Groq API"],
     joke: "Built after repeatedly seeing “auto clipping” ads, I decided to try and build my own instead.",
     links: [
       {
