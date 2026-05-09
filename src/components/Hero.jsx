@@ -29,19 +29,19 @@ const Hero = () => {
               <span>Interdisciplinary Developer</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.5rem] font-bold text-white mb-6 leading-[1.1] tracking-tighter">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tighter">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-medium text-slate-400 tracking-normal block mb-2">👋 Hi, I'm</span>
-              <span className="inline-block">
+              <span className="inline-block text-shadow-2xs text-shadow-sky-400 text-gray-100">
                 Atha Ahsan
               </span><br />
-              <span className="inline-block">
+              <span className="inline-block text-shadow-2xs text-shadow-sky-400 text-gray-100">
                 Xavier Haris
               </span>
             </h1>
 
             <div className="mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
-              <p className="text-base sm:text-lg md:text-xl font-normal mb-4 leading-relaxed ai-shimmer inline-block">
-                Building intelligent and automated systems
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl font-normal mb-4 leading-relaxed ai-shimmer inline-block">
+                Building intelligent and automated systems...
               </p>
             </div>
 

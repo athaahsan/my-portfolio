@@ -96,7 +96,7 @@ body {
   background: linear-gradient(
     110deg,
     rgb(100 116 139 / 1) 25%,
-    rgb(248 250 252 / 1) 37%,
+    rgb(255, 255, 255) 37%,
     rgb(100 116 139 / 1) 63%
   );
   background-size: 200% 100%;
