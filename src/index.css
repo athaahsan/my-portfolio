@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -9,6 +12,9 @@
   --color-base-100: #0f172a;
   --color-base-200: #1e293b;
   --color-base-300: #334155;
+  --font-geist: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
 }
 
 html {
@@ -83,4 +89,26 @@ body {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.4);
+}
+
+.ai-shimmer {
+  color: transparent;
+  background: linear-gradient(
+    110deg,
+    rgb(100 116 139 / 1) 25%,
+    rgb(248 250 252 / 1) 37%,
+    rgb(100 116 139 / 1) 63%
+  );
+  background-size: 200% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  animation: ai-shimmer 4s linear infinite;
+}
+
+@keyframes ai-shimmer {
+  to {
+    background-position-x: -200%;
+  }
 }
