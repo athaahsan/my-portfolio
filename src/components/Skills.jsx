@@ -28,7 +28,7 @@ const itemVariants = {
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 relative">
+    <section id="skills" className="font-geist py-20 relative">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

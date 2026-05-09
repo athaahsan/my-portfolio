@@ -14,7 +14,7 @@ const Hero = () => {
   const [showSummary, setShowSummary] = useState(false);
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-x-hidden bg-gradient-mesh">
+    <section id="home" className="font-geist min-h-screen flex items-center justify-center relative pt-20 overflow-x-hidden bg-gradient-mesh">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
         <div className="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-12 lg:gap-16">
 
