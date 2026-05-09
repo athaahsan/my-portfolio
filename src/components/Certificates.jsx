@@ -28,7 +28,7 @@ const certificates = [
 const Certificates = () => {
   return (
     <section id="certificates" className="py-20 relative bg-slate-900/50">
-      <div className="font-geist w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
+      <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

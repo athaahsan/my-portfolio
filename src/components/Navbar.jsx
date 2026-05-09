@@ -25,7 +25,7 @@ const Navbar = () => {
       {/* Background layer to avoid backdrop-filter nesting bug */}
       <div className={`absolute inset-0 transition-all duration-300 ${isScrolled ? 'bg-slate-900/80 backdrop-blur-md border-b border-white/10 shadow-lg' : 'bg-transparent'}`}></div>
 
-      <div className="font-geist w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center gap-2 text-xl font-bold text-white hover:text-sky-400 transition-colors">
             <Code2 className="w-8 h-8 text-sky-400" />
