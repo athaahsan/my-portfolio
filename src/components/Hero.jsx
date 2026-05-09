@@ -31,10 +31,10 @@ const Hero = () => {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-[1.1] tracking-tighter">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-medium text-slate-400 tracking-normal block mb-2">👋 Hi, I'm</span>
-              <span className="inline-block text-shadow-2xs text-shadow-sky-400 text-gray-100">
+              <span className="inline-block text-sky-100">
                 Atha Ahsan
               </span><br />
-              <span className="inline-block text-shadow-2xs text-shadow-sky-400 text-gray-100">
+              <span className="inline-block text-sky-100">
                 Xavier Haris
               </span>
             </h1>
