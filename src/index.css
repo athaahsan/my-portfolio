@@ -104,7 +104,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
 
-  animation: ai-shimmer 4s linear infinite;
+  animation: ai-shimmer 3s linear infinite;
 }
 
 @keyframes ai-shimmer {

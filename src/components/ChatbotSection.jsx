@@ -142,7 +142,7 @@ const ChatbotSection = () => {
 
   return (
     <section id="chatbot" className="py-20 relative">
-      <div className="container mx-auto px-8 md:px-16 lg:px-24">
+      <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
