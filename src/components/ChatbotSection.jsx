@@ -255,7 +255,7 @@ const ChatbotSection = () => {
                             />
                           </div>
                           <span className="text-xs font-semibold tracking-wide bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
-                            Typing...
+                            Thinking...
                           </span>
                         </div>
                       ) : (
