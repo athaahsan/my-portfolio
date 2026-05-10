@@ -4,8 +4,54 @@ export const config = {
 };
 
 
+const rateLimitMap = new Map();
+
 export default async (request, context) => {
-  const { timeNow, responseStylePrompt, convHistory, userName, userMessage, listImageData, imageLink, webSearchResult } = await request.json();
+  // Basic Rate Limiting
+  const ip = context.ip || "unknown";
+  const nowTime = Date.now();
+  const limitWindowMs = 60 * 1000; // 1 minute
+  const maxRequestsPerWindow = 10; // 10 requests per minute
+
+  if (ip !== "unknown") {
+    const userRecord = rateLimitMap.get(ip) || { count: 0, startTime: nowTime };
+    
+    if (nowTime - userRecord.startTime > limitWindowMs) {
+      userRecord.count = 1;
+      userRecord.startTime = nowTime;
+    } else {
+      userRecord.count++;
+      if (userRecord.count > maxRequestsPerWindow) {
+        return new Response(JSON.stringify({ error: "Too many requests. Please try again later." }), {
+          status: 429,
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+    }
+    rateLimitMap.set(ip, userRecord);
+  }
+
+  // Parse request body
+  let body;
+  try {
+    body = await request.json();
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Invalid JSON body" }), { status: 400 });
+  }
+
+  const { timeNow, responseStylePrompt, convHistory, userName, userMessage, listImageData, imageLink, webSearchResult } = body;
+
+  // Backend Validation for abuse prevention
+  if (userMessage && userMessage.length > 2000) {
+    return new Response(JSON.stringify({ error: "Message too long" }), { status: 400 });
+  }
+  if (userName && userName.length > 100) {
+    return new Response(JSON.stringify({ error: "Username too long" }), { status: 400 });
+  }
+  if (convHistory && convHistory.length > 10000) {
+    return new Response(JSON.stringify({ error: "Conversation history too long" }), { status: 400 });
+  }
+
   const now = new Date(timeNow);
   const birthDate = new Date('2003-05-14');
   const calculateAge = (current, birth) => {

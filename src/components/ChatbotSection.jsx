@@ -85,7 +85,15 @@ const ChatbotSection = () => {
         })
       });
 
-      if (!response.ok) throw new Error("Network response was not ok");
+      if (!response.ok) {
+        let errorMessage = "Network response was not ok";
+        if (response.status === 429) {
+          errorMessage = "Whoa, slow down! You're sending messages too fast. Please try again in a minute.";
+        } else if (response.status === 400) {
+          errorMessage = "Message validation failed. Please make sure your message isn't too long.";
+        }
+        throw new Error(errorMessage);
+      }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder("utf-8");
@@ -131,7 +139,10 @@ const ChatbotSection = () => {
       console.error("Error fetching AI response:", error);
       setMessages(prev => {
         const newMsgs = [...prev];
-        newMsgs[newMsgs.length - 1] = { role: "ai", content: "Sorry, I'm having trouble connecting to my brain right now. Please check if the API keys are set up correctly." };
+        const displayMessage = error.message && error.message !== "Network response was not ok" 
+          ? error.message 
+          : "Sorry, I'm having trouble connecting to my brain right now. Please check if the API keys are set up correctly.";
+        newMsgs[newMsgs.length - 1] = { role: "ai", content: displayMessage };
         return newMsgs;
       });
     } finally {
@@ -225,10 +236,27 @@ const ChatbotSection = () => {
                       </div>
                     ) : (
                       msg.content === "" && idx === messages.length - 1 ? (
-                        <div className="flex items-center gap-1.5 h-6">
-                          <span className="w-2 h-2 bg-sky-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                          <span className="w-2 h-2 bg-sky-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                          <span className="w-2 h-2 bg-sky-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                        <div className="flex items-center gap-3 h-8 px-2 py-1">
+                          <div className="flex gap-1.5 items-center">
+                            <motion.span
+                              animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                              transition={{ duration: 1, repeat: Infinity, delay: 0, ease: "easeInOut" }}
+                              className="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]"
+                            />
+                            <motion.span
+                              animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                              transition={{ duration: 1, repeat: Infinity, delay: 0.2, ease: "easeInOut" }}
+                              className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                            />
+                            <motion.span
+                              animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                              transition={{ duration: 1, repeat: Infinity, delay: 0.4, ease: "easeInOut" }}
+                              className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
+                            />
+                          </div>
+                          <span className="text-xs font-semibold tracking-wide bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
+                            Typing...
+                          </span>
                         </div>
                       ) : (
                         <div className="prose prose-invert max-w-none prose-p:leading-relaxed prose-p:first:mt-0 prose-p:last:mb-0 prose-pre:bg-slate-800/80 prose-pre:border prose-pre:border-slate-700/50 prose-a:text-sky-400 hover:prose-a:text-sky-300">
