@@ -46,8 +46,8 @@ const projects = [
   {
     title: "Short-Form Video Automation",
     icon: <Video size={28} className="text-emerald-400" />,
-    description: "An automated pipeline that collects Twitch clips, processes them into short-form videos with FFmpeg, and generates synchronized subtitles using Groq API.",
-    tech: ["n8n", "FFmpeg", "Twitch API", "Groq API"],
+    description: "An automated Twitch-to-YouTube Shorts pipeline that deduplicates clips, processes videos with FFmpeg, generates Groq STT subtitles, and publishes finished content to YouTube.",
+    tech: ["n8n", "FFmpeg", "Twitch API", "Groq STT", "Supabase", "YouTube API"],
     joke: "Built after repeatedly seeing “auto clipping” ads, I decided to try and build my own instead.",
     links: [
       {
