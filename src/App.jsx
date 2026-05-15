@@ -4,6 +4,7 @@ import Experience from './components/Experience'
 import Education from './components/Education'
 import Projects from './components/Projects'
 import Homelab from './components/Homelab'
+import N8nWorkflows from './components/N8nWorkflows'
 import Certificates from './components/Certificates'
 import Skills from './components/Skills'
 import ChatbotSection from './components/ChatbotSection'
@@ -15,11 +16,12 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Experience />
+        <N8nWorkflows />
         <Projects />
         <Homelab />
         <Education />
         <Certificates />
+        <Experience />
         <Skills />
         <ChatbotSection />
       </main>
