@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import remarkBreaks from 'remark-breaks';
 import rehypeHighlight from "rehype-highlight";
 import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
 import remarkMath from "remark-math";
 import "highlight.js/styles/github-dark.css";
 
@@ -259,10 +260,10 @@ const ChatbotSection = () => {
                           </span>
                         </div>
                       ) : (
-                        <div className="prose prose-invert max-w-none prose-p:leading-relaxed prose-p:first:mt-0 prose-p:last:mb-0 prose-pre:bg-slate-800/80 prose-pre:border prose-pre:border-slate-700/50 prose-a:text-sky-400 hover:prose-a:text-sky-300">
+                        <div className="prose prose-invert max-w-none break-words prose-p:leading-relaxed prose-p:first:mt-0 prose-p:last:mb-0 prose-pre:bg-slate-800/80 prose-pre:border prose-pre:border-slate-700/50 prose-a:text-sky-400 hover:prose-a:text-sky-300">
                           <ReactMarkdown
                             remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
-                            rehypePlugins={[rehypeHighlight, rehypeKatex]}
+                            rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}
                             components={{
                               img: ({ node, ...props }) => (
                                 <img
