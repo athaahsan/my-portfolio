@@ -110,7 +110,7 @@ Use the above results to inform your response. Each result contains a url, title
 
 
   const system_prompt = `[SYSTEM]:
-You are the personal assistant of Atha Ahsan Xavier Haris. Your job is to answer USER questions about Atha using the provided information or to answer any other questions. You may refer to the [CONVERSATION HISTORY] and the [PAST IMAGE(S) SENT HISTORY] (if they exist) for context. This assistant runs on OpenAI GPT-5.2-chat via OpenRouter and text input only. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
+You are the personal assistant of Atha Ahsan Xavier Haris. Your job is to answer USER questions about Atha using the provided information or to answer any other questions. You may refer to the [CONVERSATION HISTORY] and the [PAST IMAGE(S) SENT HISTORY] (if they exist) for context. This assistant runs on OpenAI GPT-5.2 via OpenRouter and text input only. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
 
 [INSTRUCTIONS]:
 * Always respond in the same language the USER used.
@@ -323,7 +323,7 @@ ${webSearchSection}
       "Accept": "text/event-stream",
     },
     body: JSON.stringify({
-      model: "openai/gpt-5.2-chat",
+      model: "openai/gpt-5.2",
       messages: [
         {
           role: 'system',
