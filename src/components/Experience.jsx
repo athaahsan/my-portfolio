@@ -9,8 +9,7 @@ const experiences = [
     type: "Contract",
     highlights: [
       "Designed and maintained n8n-based automation workflows for SaaS products and internal operations.",
-      "Integrated LLM capabilities into automation workflows, performing prompt engineering and AI-driven logic.",
-      "Configured OpenClaw to enable agentic AI assistance across internal teams, supporting task execution and decision-making processes."
+      "Integrated LLM capabilities into automation workflows, performing prompt engineering and AI-driven logic."
     ]
   },
   {

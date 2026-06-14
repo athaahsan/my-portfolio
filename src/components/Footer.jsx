@@ -10,8 +10,6 @@ const Footer = () => {
             <h3 className="text-2xl font-bold text-white mb-2">Atha<span className="text-sky-400">.</span></h3>
             <p className="text-slate-400 max-w-sm">
               Building intelligent automated systems.
-              <br />
-              Bringing data and AI to the front-end.
             </p>
           </div>
 

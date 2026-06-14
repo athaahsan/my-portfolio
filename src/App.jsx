@@ -18,7 +18,7 @@ function App() {
         <Hero />
         <N8nWorkflows />
         <Projects />
-        <Homelab />
+        {/* <Homelab /> */}
         <Education />
         <Certificates />
         <Experience />
