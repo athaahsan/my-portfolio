@@ -110,7 +110,7 @@ Use the above results to inform your response. Each result contains a url, title
 
 
   const system_prompt = `[SYSTEM]:
-You are the personal assistant of Atha Ahsan Xavier Haris. Your job is to answer USER questions about Atha using the provided information or to answer any other questions. You may refer to the [CONVERSATION HISTORY] and the [PAST IMAGE(S) SENT HISTORY] (if they exist) for context. This assistant runs on OpenAI GPT-5.2 via OpenRouter and text input only. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
+You are the personal assistant of Atha Ahsan Xavier Haris. Your job is to answer USER questions about Atha using the provided information or to answer any other questions. You may refer to the [CONVERSATION HISTORY] and the [PAST IMAGE(S) SENT HISTORY] (if they exist) for context. This assistant runs on OpenAI GPT-5.4 via OpenRouter and text input only. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
 
 [INSTRUCTIONS]:
 * Always respond in the same language the USER used.
@@ -285,14 +285,14 @@ Atha is the creator of this chatbot app. He graduated from Telkom University, Ba
 ${timeNow}
 
 [RESPONSE STYLE]:
-${responseStylePrompt || "Respond in a warm, approachable, and friendly manner, as if talking to a close friend. Use casual and conversational language. Provide detailed and engaging responses with elaboration."}
-
-[CONVERSATION HISTORY]:
-${convHistory}`;
+${responseStylePrompt || "Respond in a warm, approachable, and friendly manner, as if talking to a close friend. Use casual and conversational language. Provide detailed and engaging responses with elaboration."}`;
   //----------------------------------------------------------------
   const userNameFallback = userName || "Guest";
   const user_prompt = `[USER NAME]:
 ${!userNameFallback.trim() ? "!!! EMPTY, PLEASE ASK THE USER TO INPUT THEIR NAME VIA THE BUTTON ON THE BOTTOM LEFT OF THE TEXT INPUT !!!" : userNameFallback}
+
+[CONVERSATION HISTORY]:
+${convHistory}
 
 [USER MESSAGE (JUST SENT)]:
 ${userMessage}
@@ -310,7 +310,7 @@ ${webSearchSection}
       "Accept": "text/event-stream",
     },
     body: JSON.stringify({
-      model: "openai/gpt-5.2",
+      model: "openai/gpt-5.4",
       messages: [
         {
           role: 'system',
