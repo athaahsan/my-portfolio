@@ -149,7 +149,7 @@ export default async (request, context) => {
     return new Response(JSON.stringify({ error: "Invalid JSON body" }), { status: 400 });
   }
 
-  const { timeNow, responseStylePrompt, convHistory, userName, userMessage, listImageData, imageLink, webSearchResult } = body;
+  const { timeNow, responseStylePrompt, convHistory, userName, userMessage } = body;
 
   // Backend Validation for abuse prevention
   if (userMessage && userMessage.length > 2000) {
@@ -179,47 +179,6 @@ export default async (request, context) => {
   const athaRag = await retrieveAthaContext({ convHistory, userMessage, devAge });
   const retrievedAthaContext = athaRag.context;
 
-  const webSearchSection = webSearchResult
-    ? `[WEB SEARCH RESULTS]:
-${webSearchResult}
-Use the above results to inform your response. Each result contains a url, title, and content. Include relevant sources as markdown links in your response.`
-    : "";
-
-  const mappedListImageData = (imageLink !== null && listImageData
-    ? listImageData.slice(0, -2)
-    : (listImageData || [])
-  )
-    .filter(Boolean)
-    .map(data => ({
-      type: 'image_url',
-      image_url: { url: data },
-    }));
-
-  const imageHistory = mappedListImageData.length > 0
-    ? [
-      {
-        type: 'text',
-        text: '[PAST IMAGE(S) SENT HISTORY]:',
-      },
-      ...mappedListImageData,
-    ]
-    : [];
-
-  const imageJustSent = imageLink !== null && imageLink !== undefined
-    ? [
-      {
-        type: 'text',
-        text: '[IMAGE JUST SENT]:',
-      },
-      {
-        type: 'image_url',
-        image_url: { url: imageLink },
-      },
-    ]
-    : [];
-
-
-
 
   const system_prompt = `[SYSTEM]:
 You are the personal assistant of Atha Ahsan Xavier Haris. Your job is to answer USER questions about Atha using retrieved personal knowledge or to answer any other questions. You may refer to the [CONVERSATION HISTORY] for context. This assistant runs on OpenAI GPT-5.2 via OpenRouter and accepts text input only. This application uses retrieval-augmented generation (RAG) with Supabase to retrieve relevant personal knowledge about Atha at runtime. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
@@ -227,11 +186,11 @@ You are the personal assistant of Atha Ahsan Xavier Haris. Your job is to answer
 [INSTRUCTIONS]:
 * Always respond entirely in the same language as [USER MESSAGE (JUST SENT)].
 * Treat [USER MESSAGE (JUST SENT)] as the only source of response language.
-* Do NOT choose response language from [CONVERSATION HISTORY], [RETRIEVED Atha CONTEXT], [Atha INTRODUCTION], [WEB SEARCH RESULTS], names, locations, schools, organizations, or retrieved context.
+* Do NOT choose response language from [CONVERSATION HISTORY], [RETRIEVED Atha CONTEXT], [Atha INTRODUCTION], names, locations, schools, organizations, or retrieved context.
 * Do not mix languages unless the USER intentionally mixes languages in [USER MESSAGE (JUST SENT)] or explicitly asks for translation.
 * Always respond with the tone aligned with [RESPONSE STYLE].
 * If the USER asks something about Atha:
-  * Answer ONLY based on the [RETRIEVED Atha CONTEXT] section. 
+  * Answer ONLY based on the [RETRIEVED Atha CONTEXT] section.
   * You may perform logical reasoning or simple calculations using the provided data.
   * Speak as if you personally know Atha—don't mention or refer to [RETRIEVED Atha CONTEXT] explicitly.
 * The [RETRIEVED Atha CONTEXT] section contains personal information, background, and details so that you, the assistant, can "know" Atha and talk about him naturally.
@@ -417,8 +376,6 @@ ${convHistory}
 
 [USER MESSAGE (JUST SENT)]:
 ${userMessage}
-
-${webSearchSection}
 `;
   //----------------------------------------------------------------
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -445,9 +402,7 @@ ${webSearchSection}
         {
           role: "user",
           content: [
-            ...imageHistory,
             { type: 'text', text: user_prompt },
-            ...imageJustSent,
           ],
         }
       ],
@@ -463,7 +418,6 @@ ${webSearchSection}
       "Content-Encoding": "identity",
       "Transfer-Encoding": "chunked",
       "X-Accel-Buffering": "no",
-      "X-Web-Search-Section": webSearchSection ? encodeURIComponent(webSearchSection) : "null",
       "X-Atha-RAG-Titles": athaRag.titles.length > 0 ? encodeURIComponent(athaRag.titles.join(",")) : "null",
     },
   });
