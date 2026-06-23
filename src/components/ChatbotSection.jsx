@@ -79,10 +79,7 @@ const ChatbotSection = () => {
           responseStylePrompt: "Be friendly, professional, and slightly casual.",
           convHistory: messages.map(m => `${m.role === 'ai' ? 'Assistant' : 'User'}: ${m.content}`).join('\n'),
           userName: userName.trim() || "Guest",
-          userMessage: userMessage,
-          listImageData: [],
-          imageLink: null,
-          webSearchResult: ""
+          userMessage: userMessage
         })
       });
 
