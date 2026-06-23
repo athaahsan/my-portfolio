@@ -1,8 +1,8 @@
 import userInfo from "../userInfo.js"
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, ArrowUp, User, ChevronDown } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
+import { Bot, ArrowUp, ChevronDown } from 'lucide-react';
+import { useState, useRef } from 'react';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkBreaks from 'remark-breaks';
@@ -127,7 +127,7 @@ const ChatbotSection = () => {
                   return newMsgs;
                 });
               }
-            } catch (e) {
+            } catch {
               // JSON invalid, skip this chunk
             }
           }
@@ -150,9 +150,9 @@ const ChatbotSection = () => {
   };
 
   return (
-    <section id="chatbot" className="py-20 relative">
+    <section id="chatbot" className="pt-20 pb-12 md:pb-14 relative">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -173,9 +173,9 @@ const ChatbotSection = () => {
               className="bg-transparent border-none text-sky-400 font-semibold focus:outline-none w-32 placeholder-sky-400/30"
             />
           </div>
-        </motion.div>
+        </Motion.div>
 
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -217,7 +217,7 @@ const ChatbotSection = () => {
               className="flex-1 w-full h-full overflow-y-auto p-4 pt-24 pb-32 md:p-6 md:pt-28 md:pb-32 space-y-6 relative z-10 custom-scrollbar"
             >
               {messages.map((msg, idx) => (
-                <motion.div
+                <Motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -236,17 +236,17 @@ const ChatbotSection = () => {
                       msg.content === "" && idx === messages.length - 1 ? (
                         <div className="flex items-center gap-3 h-8 px-2 py-1">
                           <div className="flex gap-1.5 items-center">
-                            <motion.span
+                            <Motion.span
                               animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                               transition={{ duration: 1, repeat: Infinity, delay: 0, ease: "easeInOut" }}
                               className="w-2 h-2 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]"
                             />
-                            <motion.span
+                            <Motion.span
                               animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                               transition={{ duration: 1, repeat: Infinity, delay: 0.2, ease: "easeInOut" }}
                               className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"
                             />
-                            <motion.span
+                            <Motion.span
                               animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                               transition={{ duration: 1, repeat: Infinity, delay: 0.4, ease: "easeInOut" }}
                               className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
@@ -262,13 +262,18 @@ const ChatbotSection = () => {
                             remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
                             rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}
                             components={{
-                              img: ({ node, ...props }) => (
-                                <img
-                                  {...props}
-                                  className="max-w-50 h-auto rounded-md"
-                                  alt={props.alt}
-                                />
-                              ),
+                              img: (props) => {
+                                const imgProps = { ...props };
+                                delete imgProps.node;
+
+                                return (
+                                  <img
+                                    {...imgProps}
+                                    className="max-w-50 h-auto rounded-md"
+                                    alt={props.alt}
+                                  />
+                                );
+                              },
                             }}
                           >
                             {msg.content}
@@ -278,7 +283,7 @@ const ChatbotSection = () => {
                     )}
                   </div>
 
-                </motion.div>
+                </Motion.div>
               ))}
               <div ref={messagesEndRef} />
             </div>
@@ -289,7 +294,7 @@ const ChatbotSection = () => {
               {/* Scroll down button */}
               <AnimatePresence>
                 {showScrollDown && (
-                  <motion.div
+                  <Motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
@@ -302,21 +307,21 @@ const ChatbotSection = () => {
                     >
                       <ChevronDown size={24} />
                     </button>
-                  </motion.div>
+                  </Motion.div>
                 )}
               </AnimatePresence>
 
               <form onSubmit={handleSend} className="w-full relative flex items-end gap-3 bg-white/2 backdrop-blur-xl border-t border-slate-600/50 p-4 md:p-5 pointer-events-auto transition-all duration-300 z-20 shadow-[0_-4px_30px_rgba(0,0,0,0.1)]">
                 <AnimatePresence>
                   {inputText.length >= maxLength - 50 && (
-                    <motion.div
+                    <Motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       className="absolute -top-10 right-4 bg-rose-500/90 text-white font-medium text-xs px-3 py-1.5 rounded-lg border border-rose-400/50 backdrop-blur-md pointer-events-none"
                     >
                       {inputText.length >= maxLength ? "Maximum length reached" : `${maxLength - inputText.length} characters remaining`}
-                    </motion.div>
+                    </Motion.div>
                   )}
                 </AnimatePresence>
                 <textarea
@@ -351,7 +356,7 @@ const ChatbotSection = () => {
               </form>
             </div>
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const skills = [
   "React.js", "JavaScript", "Tailwind CSS", "HTML", "CSS",
   "Python", "Data Analytics", "Data Visualization", "Machine Learning", 
-  "LLM Integration", "Prompt Engineering",
+  "LLM Integration", "RAG", "Prompt Engineering",
   "n8n", "Google Apps Script", "Git"
 ];
 
