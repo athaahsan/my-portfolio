@@ -17,6 +17,7 @@ const ChatbotSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showScrollDown, setShowScrollDown] = useState(false);
   const [userName, setUserName] = useState("");
+  const [previousRetrievedTitles, setPreviousRetrievedTitles] = useState([]);
   const [messages, setMessages] = useState([
     {
       role: "ai",
@@ -76,10 +77,11 @@ const ChatbotSection = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           timeNow: new Date().toISOString(),
-          responseStylePrompt: "Be friendly, professional, and slightly casual.",
+          responseStylePrompt: "Respond in a warm, approachable, and friendly manner, as if talking to a close friend. Use casual and conversational language. Provide detailed and engaging responses with elaboration.",
           convHistory: messages.map(m => `${m.role === 'ai' ? 'Assistant' : 'User'}: ${m.content}`).join('\n'),
           userName: userName.trim() || "Guest",
-          userMessage: userMessage
+          userMessage: userMessage,
+          previousRetrievedTitles,
         })
       });
 
@@ -118,7 +120,13 @@ const ChatbotSection = () => {
 
             try {
               const parsed = JSON.parse(data);
-              const content = parsed.choices[0]?.delta?.content;
+              if (Array.isArray(parsed.athaRagTitles)) {
+                setPreviousRetrievedTitles(parsed.athaRagTitles);
+                console.log("Atha RAG Titles:", parsed.athaRagTitles);
+                continue;
+              }
+
+              const content = parsed.choices?.[0]?.delta?.content;
               if (content) {
                 aiFullResponse += content;
                 setMessages(prev => {
