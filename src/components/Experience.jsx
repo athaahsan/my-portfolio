@@ -8,8 +8,9 @@ const experiences = [
     date: "Jan 2026 – Present",
     type: "Contract",
     highlights: [
-      "Designed and maintained n8n-based automation workflows for SaaS products and internal operations.",
-      "Integrated LLM capabilities into automation workflows, performing prompt engineering and AI-driven logic."
+      "Designed and maintained n8n-based automation workflows for SaaS products and internal workflow prototypes, including integration with Google Apps Script for dynamic, user-specific credential handling.",
+      "Integrated LLM capabilities into automation workflows, performing prompt engineering and AI-driven logic.",
+      "Developed AI-integrated digital product templates using Google AI Studio and Gemini Canvas, leveraging Google-hosted sharing and Gemini-powered features to create lightweight, shareable app experiences."
     ]
   },
   {
@@ -29,7 +30,7 @@ const Experience = () => {
   return (
     <section id="experience" className="py-20 relative">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -41,7 +42,7 @@ const Experience = () => {
 
         <div className="max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -51,7 +52,7 @@ const Experience = () => {
             >
               {/* Timeline Line */}
               <div className="absolute left-0 sm:left-40 top-0 bottom-0 w-px bg-slate-800 group-hover:bg-sky-500/50 transition-colors"></div>
-              
+
               {/* Timeline Dot */}
               <div className="absolute left-[-6px] sm:left-[155px] top-8 w-3 h-3 rounded-full bg-slate-800 border-2 border-sky-500 group-hover:bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)] transition-all"></div>
 
@@ -76,7 +77,7 @@ const Experience = () => {
                       </span>
                     </div>
                   </div>
-                  
+
                   {/* Date (Mobile) */}
                   <div className="sm:hidden flex items-center gap-2 text-sky-400 text-sm font-medium">
                     <Calendar size={16} />
