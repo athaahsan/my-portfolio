@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import Experience from './components/Experience'
 import Education from './components/Education'
 import Projects from './components/Projects'
+import AgenticPlayground from './components/AgenticPlayground'
 import Homelab from './components/Homelab'
 import N8nWorkflows from './components/N8nWorkflows'
 import Certificates from './components/Certificates'
@@ -18,6 +19,7 @@ function App() {
         <Hero />
         <N8nWorkflows />
         <Projects />
+        <AgenticPlayground />
         {/* <Homelab /> */}
         <Education />
         <Certificates />

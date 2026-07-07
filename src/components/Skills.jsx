@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 
 const skills = [
-  "React.js", "JavaScript", "Tailwind CSS", "HTML", "CSS",
-  "Python", "Data Analytics", "Data Visualization", "Machine Learning", 
-  "LLM Integration", "RAG", "Prompt Engineering",
-  "n8n", "Google Apps Script", "Git"
+  "LLM Integration", "Prompt Engineering", "RAG",
+  "Agentic AI Tooling", "AI-Assisted Development", "OpenClaw",
+  "Python", "React.js", "JavaScript", "Tailwind CSS", "HTML", "CSS",
+  "Data Analytics", "Data Visualization", "Machine Learning",
+  "Workflow Automation", "n8n", "Google Apps Script"
 ];
 
 const containerVariants = {
