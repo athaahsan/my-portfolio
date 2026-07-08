@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Bot, LineChart, Video, Info } from 'lucide-react';
-import { FaYoutube } from 'react-icons/fa';
+import { FaGithub, FaYoutube } from 'react-icons/fa';
 import telegramIcon from '../assets/telegram.svg';
 
 const projects = [
@@ -35,10 +35,10 @@ const projects = [
         primary: true
       },
       {
-        type: "youtube",
-        url: "https://www.youtube.com/@MoodaClips-67",
-        label: "MoodaClips",
-        primary: true
+        type: "case-study",
+        url: "https://github.com/athaahsan/twitch-clips-to-youtube-shorts",
+        label: "Case Study",
+        primary: false
       }
     ],
     gradient: "from-emerald-500/20 to-teal-500/20"
@@ -89,6 +89,9 @@ const Projects = () => {
       if (link.type === 'youtube') {
         return `${baseStyle} bg-slate-800/50 border-slate-700 hover:bg-red-500/10 hover:border-red-500/50 text-slate-300 hover:text-red-400`;
       }
+      if (link.type === 'case-study') {
+        return `${baseStyle} bg-slate-800/50 border-slate-700 hover:bg-emerald-500/10 hover:border-emerald-500/50 text-slate-300 hover:text-emerald-300`;
+      }
       return `${baseStyle} bg-slate-800/50 hover:bg-slate-700 border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white`;
     }
   };
@@ -98,6 +101,8 @@ const Projects = () => {
       return <img src={telegramIcon} alt="Telegram" className={`w-[18px] h-[18px] transition-opacity ${link.primary ? '' : 'opacity-70 group-hover:opacity-100'}`} />;
     } else if (link.type === 'youtube') {
       return <FaYoutube size={18} />;
+    } else if (link.type === 'case-study') {
+      return <FaGithub size={18} />;
     } else {
       return <ExternalLink size={18} />;
     }
