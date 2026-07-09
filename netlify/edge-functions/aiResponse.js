@@ -6,8 +6,8 @@ export const config = {
 
 const rateLimitMap = new Map();
 const OPENROUTER_EMBEDDING_MODEL = "openai/text-embedding-3-large";
-const RAG_MATCH_COUNT = 4;
-const RAG_SIMILARITY_THRESHOLD = 0.20;
+const RAG_MATCH_COUNT = 5;
+const RAG_SIMILARITY_THRESHOLD = 0.16;
 const RAG_PREVIOUS_FOCUS_COUNT = 3;
 
 const getEnv = (name) => Netlify.env.get(name);

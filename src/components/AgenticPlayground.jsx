@@ -20,7 +20,7 @@ const AgenticPlayground = () => {
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-4xl font-bold text-white mb-4">Personal R&D</h2>
+          <h2 className="text-4xl font-bold text-white mb-4">Self-Hosted Stack</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-rose-400 to-sky-500 mx-auto rounded-full"></div>
         </motion.div>
 
