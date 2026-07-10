@@ -27,6 +27,38 @@ body {
   color: #f8fafc;
 }
 
+.portfolio-backdrop {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.portfolio-backdrop::before,
+.portfolio-backdrop::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.portfolio-backdrop::before {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(180deg, #0f172a 0%, #111827 48%, #0f172a 100%);
+  background-size: 38px 38px, 38px 38px, auto;
+  background-position: center top;
+}
+
+.portfolio-backdrop::after {
+  opacity: 0.11;
+  background-image:
+    radial-gradient(circle at center, rgba(248, 250, 252, 0.28) 0 0.7px, transparent 0.8px);
+  background-size: 5px 5px;
+  mix-blend-mode: soft-light;
+}
+
 .glass-nav {
   background: rgba(15, 23, 42, 0.7);
   backdrop-filter: blur(10px);
@@ -50,14 +82,12 @@ body {
 }
 
 .bg-gradient-mesh {
-  background-image: 
-    radial-gradient(at 40% 20%, hsla(280,100%,74%,0.1) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, hsla(189,100%,56%,0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, hsla(355,100%,93%,0) 0px, transparent 50%),
-    radial-gradient(at 80% 50%, hsla(340,100%,76%,0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, hsla(22,100%,77%,0) 0px, transparent 50%),
-    radial-gradient(at 80% 100%, hsla(242,100%,70%,0.1) 0px, transparent 50%),
-    radial-gradient(at 0% 0%, hsla(343,100%,76%,0) 0px, transparent 50%);
+  background: transparent;
+}
+
+.bg-gradient-mesh::before,
+.bg-gradient-mesh::after {
+  content: none;
 }
 
 /* Global Scrollbar */

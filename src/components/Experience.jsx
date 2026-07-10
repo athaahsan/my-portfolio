@@ -54,7 +54,7 @@ const Experience = () => {
               <div className="absolute left-0 sm:left-40 top-0 bottom-0 w-px bg-slate-800 group-hover:bg-sky-500/50 transition-colors"></div>
 
               {/* Timeline Dot */}
-              <div className="absolute left-[-6px] sm:left-[155px] top-8 w-3 h-3 rounded-full bg-slate-800 border-2 border-sky-500 group-hover:bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)] transition-all"></div>
+              <div className="absolute left-[-6px] sm:left-[154px] top-8 w-3 h-3 rounded-full bg-slate-800 border-2 border-sky-500 group-hover:bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)] transition-all"></div>
 
               {/* Date (Desktop) */}
               <div className="hidden sm:block absolute left-0 top-6 w-36 text-right">

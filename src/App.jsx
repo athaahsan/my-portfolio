@@ -13,9 +13,9 @@ import Footer from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-900 font-geist selection:bg-sky-500/30">
+    <div className="portfolio-backdrop min-h-screen bg-slate-900 font-geist selection:bg-sky-500/30">
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <N8nWorkflows />
         <Projects />
@@ -27,7 +27,9 @@ function App() {
         <Skills />
         <ChatbotSection />
       </main>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   )
 }

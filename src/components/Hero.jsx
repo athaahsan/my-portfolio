@@ -90,7 +90,7 @@ const Hero = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="hidden md:block absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400"
+        className="hidden md:block absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-slate-400"
       >
         <ChevronDown size={32} />
       </motion.div>
