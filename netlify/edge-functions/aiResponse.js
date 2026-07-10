@@ -5,7 +5,7 @@ export const config = {
 
 
 const rateLimitMap = new Map();
-const OPENROUTER_EMBEDDING_MODEL = "openai/text-embedding-3-large";
+const OPENROUTER_EMBEDDING_MODEL = "google/gemini-embedding-2";
 const RAG_MATCH_COUNT = 5;
 const RAG_SIMILARITY_THRESHOLD = 0.16;
 const RAG_PREVIOUS_FOCUS_COUNT = 3;
