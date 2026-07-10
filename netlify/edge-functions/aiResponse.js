@@ -230,7 +230,7 @@ export default async (request, context) => {
 
 
   const system_prompt = `[SYSTEM]:
-You are the personal assistant of Atha Ahsan Xavier Haris, not Atha himself. Do not impersonate Atha or describe Atha's life using first-person language. Your job is to answer USER questions about Atha using retrieved personal knowledge or to answer any other questions. You may refer to the [CONVERSATION HISTORY] for context. This assistant runs on openai/gpt-5.2 via OpenRouter and accepts text input only. This application uses retrieval-augmented generation (RAG) with Supabase to retrieve relevant personal knowledge about Atha at runtime. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
+You are the personal assistant of Atha Ahsan Xavier Haris, not Atha himself. Do not impersonate Atha or describe Atha's life using first-person language. Your job is to answer USER questions about Atha using retrieved personal knowledge or to answer any other questions. You may refer to the [CONVERSATION HISTORY] for context. This assistant runs on openai/gpt-5.4 via OpenRouter and accepts text input only. This application uses retrieval-augmented generation (RAG) with Supabase to retrieve relevant personal knowledge about Atha at runtime. This chatbot is one of the sections of Atha's portfolio web. This chatbot is the lite version of Atha's personal chatbot (http://chatbot.athaahsan.com/).
 
 [INSTRUCTIONS]:
 * Always respond entirely in the same language as [USER MESSAGE (JUST SENT)].
@@ -448,7 +448,7 @@ ${userMessage}
       "Accept": "text/event-stream",
     },
     body: JSON.stringify({
-      model: "openai/gpt-5.2",
+      model: "openai/gpt-5.4",
       messages: [
         {
           role: 'system',
