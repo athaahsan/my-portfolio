@@ -19,7 +19,7 @@ export async function handler(event) {
         const { data, error } = await supabase
             .from("n8nWorkflows")
             .select("*")
-            .order('created_at', { ascending: false });
+            .order('id', { ascending: true });
 
         if (error) {
             console.error("❌ Supabase error:", error);
