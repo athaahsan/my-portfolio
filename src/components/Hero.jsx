@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, ChevronDown, Terminal, ArrowRight, Sparkles } from 'lucide-react';
 import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
-import profilePic from '../assets/athaPic7.jpeg';
+import profilePic from '../assets/athaPic9.jpeg';
 import reactLogo from '../assets/reactjs.svg';
 import tailwindLogo from '../assets/tailwind.svg';
 import pythonLogo from '../assets/python.svg';
