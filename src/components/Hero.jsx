@@ -1,23 +1,15 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, ChevronDown, Terminal, ArrowRight, Sparkles } from 'lucide-react';
+import { motion as Motion } from 'framer-motion';
+import { Mail, ChevronDown, ArrowRight } from 'lucide-react';
 import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 import profilePic from '../assets/athaPic10.jpeg';
-import reactLogo from '../assets/reactjs.svg';
-import tailwindLogo from '../assets/tailwind.svg';
-import pythonLogo from '../assets/python.svg';
-import n8nLogo from '../assets/n8n.svg';
-import openrouterLogo from '../assets/open-router-dark.svg';
 
 const Hero = () => {
-  const [showSummary, setShowSummary] = useState(false);
-
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-x-hidden bg-gradient-mesh">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
         <div className="flex flex-col-reverse md:flex-row items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16">
 
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -36,8 +28,8 @@ const Hero = () => {
             </h1>
 
             <div className="mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl font-normal mb-4 leading-relaxed ai-shimmer inline-block">
-                Building intelligent automated systems...
+              <p className="mb-4 inline-block text-sm font-medium leading-relaxed text-slate-400 sm:text-base md:text-lg lg:text-xl">
+                Applied AI &amp; Automation Developer
               </p>
             </div>
 
@@ -64,9 +56,9 @@ const Hero = () => {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -83,17 +75,17 @@ const Hero = () => {
 
 
 
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
 
-      <motion.div
+      <Motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
         className="hidden md:block absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-slate-400"
       >
         <ChevronDown size={32} />
-      </motion.div>
+      </Motion.div>
     </section>
   );
 };

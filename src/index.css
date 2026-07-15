@@ -121,28 +121,6 @@ body {
   background: rgba(148, 163, 184, 0.4);
 }
 
-.ai-shimmer {
-  color: transparent;
-  background: linear-gradient(
-    110deg,
-    rgb(100 116 139 / 1) 25%,
-    rgb(255, 255, 255) 37%,
-    rgb(100 116 139 / 1) 63%
-  );
-  background-size: 200% 100%;
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  animation: ai-shimmer 3s linear infinite;
-}
-
-@keyframes ai-shimmer {
-  to {
-    background-position-x: -200%;
-  }
-}
-
 /* Hide scrollbar for horizontal scrolling elements */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;

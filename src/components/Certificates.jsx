@@ -110,7 +110,7 @@ const Certificates = () => {
           </div>
         )}
 
-        <div ref={carouselRef} onScroll={handleScroll} onKeyDown={handleKeyDown} tabIndex={0} role="region" aria-label="Certificates carousel" className="hide-scrollbar mx-auto flex max-w-6xl snap-x snap-mandatory items-stretch gap-6 overflow-x-auto rounded-3xl pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400/50">
+        <div ref={carouselRef} onScroll={handleScroll} onKeyDown={handleKeyDown} tabIndex={0} role="region" aria-label="Certificates carousel" className="hide-scrollbar mx-auto flex max-w-6xl snap-x snap-mandatory items-stretch gap-6 overflow-x-auto overflow-y-hidden rounded-3xl pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400/50">
           {certificates.map((certificate, index) => (
             <Motion.article
               key={certificate.title}
@@ -119,7 +119,7 @@ const Certificates = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.12 }}
-              className="glass-card group flex w-[calc(100%-1.5rem)] shrink-0 snap-start flex-col rounded-3xl border border-slate-700 p-6 transition-all hover:border-pink-500/50 md:w-[calc((100%-1.5rem)/2)] xl:w-[calc((100%-3rem)/3)]"
+              className="glass-card group flex w-full shrink-0 snap-start flex-col rounded-3xl border border-slate-700 p-6 transition-all hover:border-pink-500/50 md:w-[calc((100%-1.5rem)/2)] xl:w-[calc((100%-3rem)/3)]"
             >
               <div className="mb-6 flex items-start justify-between">
                 <div className="rounded-2xl bg-pink-500/10 p-3 text-pink-400 transition-colors group-hover:bg-pink-500 group-hover:text-white">
