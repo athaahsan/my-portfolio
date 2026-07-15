@@ -46,6 +46,31 @@ const projects = [
   },
 ];
 
+const TechPill = ({ technology }) => (
+  <span className="shrink-0 rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300">
+    {technology}
+  </span>
+);
+
+const TechStack = ({ technologies }) => (
+  <>
+    <div className="tech-stack-marquee-window -mx-1 mb-5 overflow-hidden px-1 md:hidden" aria-label="Technology stack">
+      <div className="tech-stack-marquee-track flex w-max">
+        <div className="flex gap-2 pr-2">
+          {technologies.map((technology) => <TechPill key={technology} technology={technology} />)}
+        </div>
+        <div className="flex gap-2 pr-2" aria-hidden="true">
+          {technologies.map((technology) => <TechPill key={`duplicate-${technology}`} technology={technology} />)}
+        </div>
+      </div>
+    </div>
+
+    <div className="mb-5 hidden flex-wrap gap-2 md:flex" aria-label="Technology stack">
+      {technologies.map((technology) => <TechPill key={technology} technology={technology} />)}
+    </div>
+  </>
+);
+
 const ProjectPreview = ({ project }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -219,11 +244,7 @@ const Projects = () => {
                   )}
                 </div>
 
-                <div className="hide-scrollbar -mx-1 mb-5 flex flex-nowrap gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
-                  {project.tech.map((technology) => (
-                    <span key={technology} className="shrink-0 rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300">{technology}</span>
-                  ))}
-                </div>
+                <TechStack key={project.title} technologies={project.tech} />
 
                 <div className="mt-auto flex items-center gap-2 border-t border-slate-700/50 pt-5 sm:gap-3">
                   {project.links.map((link) => (
