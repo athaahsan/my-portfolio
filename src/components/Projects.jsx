@@ -1,205 +1,245 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Bot, LineChart, Video, Info } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion as Motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, ExternalLink, Info } from 'lucide-react';
 import { FaGithub, FaYoutube } from 'react-icons/fa';
 import telegramIcon from '../assets/telegram.svg';
 
 const projects = [
   {
-    title: "Personal Chatbot",
-    icon: <Bot size={28} className="text-sky-400" />,
-    description: "A personal AI assistant chatbot that answers questions about myself and general queries, using RAG for personal knowledge retrieval, Tavily-powered web search, multimodal input, and real-time streaming responses.",
-    tech: ["React.js", "Tailwind CSS", "DaisyUI", "OpenRouter", "Supabase", "Tavily", "Netlify"],
-    joke: "Built during a phase where I had a lot more free time than usual (unemployment after graduation lol).",
+    title: 'Personal Chatbot',
+    category: 'Conversational AI',
+    description: 'A personal AI assistant chatbot that answers questions about myself and general queries, using RAG for personal knowledge retrieval, Tavily-powered web search, multimodal input, and real-time streaming responses.',
+    tech: ['React.js', 'Tailwind CSS', 'DaisyUI', 'OpenRouter', 'Supabase', 'Tavily', 'Netlify'],
+    joke: 'Built during a phase where I had a lot more free time than usual (unemployment after graduation lol).',
+    previewUrl: 'https://chatbot.athaahsan.com/',
     links: [
-      {
-        type: "demo",
-        url: "https://chatbot.athaahsan.com/",
-        label: "Live Demo",
-        primary: true
-      }
+      { type: 'demo', url: 'https://chatbot.athaahsan.com/', label: 'Live Demo', primary: true },
     ],
-    gradient: "from-sky-500/20 to-blue-500/20"
+    gradient: 'from-sky-500/20 to-blue-500/20',
   },
   {
-    title: "Short-Form Video Automation",
-    icon: <Video size={28} className="text-emerald-400" />,
-    description: "An automated Twitch-to-YouTube Shorts pipeline that deduplicates clips, processes videos with FFmpeg, generates Groq STT subtitles, and publishes finished content to YouTube.",
-    tech: ["n8n", "FFmpeg", "Twitch API", "Groq STT", "Supabase", "YouTube API"],
-    joke: "Built after repeatedly seeing “auto clipping” ads, I decided to try and build my own instead.",
+    title: 'Video Automation',
+    category: 'Content Automation',
+    description: 'An automated Twitch-to-YouTube Shorts pipeline that deduplicates clips, processes videos with FFmpeg, generates Groq STT subtitles, and publishes finished content to YouTube.',
+    tech: ['n8n', 'FFmpeg', 'Twitch API', 'Groq STT', 'Supabase', 'YouTube API'],
+    joke: 'Built after repeatedly seeing “auto clipping” ads, so I decided to try building my own.',
+    previewMode: 'youtube',
+    previewUrl: 'https://www.youtube.com/embed/2nIPPVU4EPQ?playsinline=1&rel=0',
     links: [
-      {
-        type: "youtube",
-        url: "https://www.youtube.com/@JiddyClips-67",
-        label: "JiddyClips",
-        primary: true
-      },
-      {
-        type: "case-study",
-        url: "https://github.com/athaahsan/twitch-clips-to-youtube-shorts",
-        label: "Case Study",
-        primary: false
-      }
+      { type: 'youtube', url: 'https://www.youtube.com/@JiddyClips-67', label: 'JiddyClips', primary: true },
+      { type: 'case-study', url: 'https://github.com/athaahsan/twitch-clips-to-youtube-shorts', label: 'Case Study', primary: false },
     ],
-    gradient: "from-emerald-500/20 to-teal-500/20"
+    gradient: 'from-emerald-500/20 to-teal-500/20',
   },
   {
-    title: "Crypto Dashboard",
-    icon: <LineChart size={28} className="text-purple-400" />,
-    description: "A real-time cryptocurrency dashboard with an AI Insight module that analyzes technical indicators and market sentiment to generate a structured daily market bias.",
-    tech: ["React.js", "Tailwind CSS", "DaisyUI", "Google Apps Script", "OpenRouter", "Netlify"],
-    joke: "Initially it was a Streamlit project deployed on Streamlit Cloud, but then I got tired of its auto-sleep mechanism putting my dashboard to bed every few hours, so I made the React version.",
+    title: 'Crypto Dashboard',
+    category: 'Market Intelligence',
+    description: 'A real-time cryptocurrency dashboard with an AI Insight module that analyzes technical indicators and market sentiment to generate a structured daily market bias.',
+    tech: ['React.js', 'Tailwind CSS', 'DaisyUI', 'Google Apps Script', 'OpenRouter', 'Netlify'],
+    joke: 'It started as a Streamlit project, but I rebuilt it in React after getting tired of the auto-sleep behavior.',
+    previewUrl: 'https://crypto.athaahsan.com/',
     links: [
-      {
-        type: "demo",
-        url: "https://crypto.athaahsan.com/",
-        label: "Live Demo",
-        primary: true
-      },
-      {
-        type: "telegram",
-        url: "https://t.me/dailybtcinsightbot",
-        label: "Telegram Bot",
-        primary: false
-      }
+      { type: 'demo', url: 'https://crypto.athaahsan.com/', label: 'Live Demo', primary: true },
+      { type: 'telegram', url: 'https://t.me/dailybtcinsightbot', label: 'Telegram Bot', primary: false },
     ],
-    gradient: "from-purple-500/20 to-pink-500/20"
-  }
+    gradient: 'from-purple-500/20 to-pink-500/20',
+  },
 ];
 
-const Projects = () => {
-  const [activeJokeIndex, setActiveJokeIndex] = useState(null);
+const ProjectPreview = ({ project }) => {
+  const [loaded, setLoaded] = useState(false);
 
-  const toggleJoke = (index) => {
-    setActiveJokeIndex(activeJokeIndex === index ? null : index);
+  if (project.previewMode === 'youtube') {
+    return (
+      <div className="relative h-44 overflow-hidden bg-black md:h-full md:min-h-[400px]">
+        <iframe
+          src={project.previewUrl}
+          title={`${project.title} video preview`}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full border-0"
+        />
+      </div>
+    );
+  }
+
+  const liveDemoUrl = project.links.find((link) => link.type === 'demo')?.url;
+
+  return (
+    <a
+      href={liveDemoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open ${project.title} live demo`}
+      title={`Open ${project.title} live demo`}
+      className={`group/preview relative block h-44 cursor-pointer overflow-hidden bg-gradient-to-br outline-none transition-shadow hover:shadow-[inset_0_0_0_2px_rgba(56,189,248,.45)] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sky-400 md:h-full md:min-h-[400px] ${project.gradient}`}
+    >
+      <div className={`absolute inset-0 z-10 grid place-items-center bg-slate-900/80 transition-opacity duration-500 ${loaded ? 'pointer-events-none opacity-0' : 'opacity-100'}`}>
+        <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-sky-400" /> Loading live preview
+        </div>
+      </div>
+      <iframe
+        src={project.previewUrl}
+        title={`${project.title} live preview`}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        tabIndex="-1"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 h-[200%] w-[200%] origin-top-left scale-50 border-0 bg-slate-950 opacity-95 transition-opacity group-hover/preview:opacity-100 md:h-[160%] md:w-[160%] md:scale-[0.625]"
+      />
+    </a>
+  );
+};
+
+const Projects = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [expandedDescription, setExpandedDescription] = useState(false);
+  const [descriptionCanExpand, setDescriptionCanExpand] = useState(false);
+  const [showJoke, setShowJoke] = useState(false);
+  const [descriptionElement, setDescriptionElement] = useState(null);
+  const project = projects[currentIndex];
+
+  useEffect(() => {
+    const description = descriptionElement;
+    if (!description) return undefined;
+
+    const measureOverflow = () => {
+      if (!description.classList.contains('line-clamp-3')) return;
+      setDescriptionCanExpand(description.scrollHeight > description.clientHeight + 1);
+    };
+
+    const animationFrame = requestAnimationFrame(measureOverflow);
+    const resizeObserver = new ResizeObserver(measureOverflow);
+    resizeObserver.observe(description);
+    window.addEventListener('resize', measureOverflow);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', measureOverflow);
+    };
+  }, [descriptionElement]);
+
+  const moveToProject = (nextIndex) => {
+    if (nextIndex < 0 || nextIndex >= projects.length || nextIndex === currentIndex) return;
+    setDirection(nextIndex > currentIndex ? 1 : -1);
+    setCurrentIndex(nextIndex);
+    setExpandedDescription(false);
+    setDescriptionCanExpand(false);
+    setShowJoke(false);
   };
 
   const getButtonStyle = (link) => {
-    const baseStyle = "group flex w-full sm:flex-1 md:w-full md:flex-none lg:flex-1 items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm md:text-base border";
-
-    if (link.primary) {
-      if (link.type === 'youtube') {
-        return `${baseStyle} bg-red-600 hover:bg-red-500 border-red-600 hover:border-red-500 text-white shadow-lg shadow-red-600/25`;
-      }
-      return `${baseStyle} bg-sky-500 hover:bg-sky-400 border-sky-500 hover:border-sky-400 text-white shadow-lg shadow-sky-500/25`;
-    } else {
-      if (link.type === 'telegram') {
-        return `${baseStyle} bg-slate-800/50 border-slate-700 hover:bg-[#229ED9]/10 hover:border-[#229ED9]/50 text-slate-300 hover:text-[#229ED9]`;
-      }
-      if (link.type === 'youtube') {
-        return `${baseStyle} bg-slate-800/50 border-slate-700 hover:bg-red-500/10 hover:border-red-500/50 text-slate-300 hover:text-red-400`;
-      }
-      if (link.type === 'case-study') {
-        return `${baseStyle} bg-slate-800/50 border-slate-700 hover:bg-emerald-500/10 hover:border-emerald-500/50 text-slate-300 hover:text-emerald-300`;
-      }
-      return `${baseStyle} bg-slate-800/50 hover:bg-slate-700 border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white`;
-    }
+    const baseStyle = 'group flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-300 sm:px-4 md:text-base';
+    if (link.primary && link.type === 'youtube') return `${baseStyle} border-red-600 bg-red-600 text-white shadow-lg shadow-red-600/20 hover:bg-red-500`;
+    if (link.primary) return `${baseStyle} border-sky-500 bg-sky-500 text-white shadow-lg shadow-sky-500/20 hover:bg-sky-400`;
+    if (link.type === 'telegram') return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-[#229ED9]/50 hover:text-[#229ED9]`;
+    if (link.type === 'case-study') return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-emerald-500/50 hover:text-emerald-300`;
+    return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-600 hover:text-white`;
   };
 
   const getIcon = (link) => {
-    if (link.type === 'telegram') {
-      return <img src={telegramIcon} alt="Telegram" className={`w-[18px] h-[18px] transition-opacity ${link.primary ? '' : 'opacity-70 group-hover:opacity-100'}`} />;
-    } else if (link.type === 'youtube') {
-      return <FaYoutube size={18} />;
-    } else if (link.type === 'case-study') {
-      return <FaGithub size={18} />;
-    } else {
-      return <ExternalLink size={18} />;
-    }
+    if (link.type === 'telegram') return <img src={telegramIcon} alt="Telegram" className="h-[18px] w-[18px] opacity-70 transition-opacity group-hover:opacity-100" />;
+    if (link.type === 'youtube') return <FaYoutube size={18} />;
+    if (link.type === 'case-study') return <FaGithub size={18} />;
+    return <ExternalLink size={18} />;
   };
 
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
-          <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-sky-400 to-purple-500 mx-auto rounded-full"></div>
-        </motion.div>
+    <section id="projects" className="relative py-20">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-16 lg:px-24">
+        <Motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10 text-center md:mb-12">
+          <h2 className="mb-4 text-4xl font-bold text-white">Featured Projects</h2>
+          <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-sky-400 to-purple-500" />
+        </Motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2 }}
-              className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full border border-slate-700/50 hover:border-slate-500/50 transition-colors"
+        <div className="mx-auto mb-4 flex max-w-6xl items-center justify-between">
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-slate-500" aria-live="polite">
+            {String(currentIndex + 1).padStart(2, '0')}<span className="mx-2 text-slate-700">/</span>{String(projects.length).padStart(2, '0')}
+          </p>
+          <div className="flex items-center gap-2">
+            <button type="button" onClick={() => moveToProject(currentIndex - 1)} disabled={currentIndex === 0} aria-label="Show previous project" className="grid h-10 w-10 place-items-center rounded-full border border-slate-700 bg-slate-800/60 text-slate-300 transition hover:border-sky-400/40 hover:text-sky-300 disabled:cursor-not-allowed disabled:opacity-30 sm:h-11 sm:w-11">
+              <ChevronLeft size={20} />
+            </button>
+            <button type="button" onClick={() => moveToProject(currentIndex + 1)} disabled={currentIndex === projects.length - 1} aria-label="Show next project" className="grid h-10 w-10 place-items-center rounded-full border border-slate-700 bg-slate-800/60 text-slate-300 transition hover:border-sky-400/40 hover:text-sky-300 disabled:cursor-not-allowed disabled:opacity-30 sm:h-11 sm:w-11">
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        <div role="region" aria-label="Featured projects carousel" className="mx-auto max-w-6xl overflow-hidden rounded-3xl focus:outline-none">
+          <AnimatePresence mode="wait" initial={false} custom={direction}>
+            <Motion.article
+              key={project.title}
+              custom={direction}
+              variants={{
+                enter: (slideDirection) => ({ opacity: 0, x: slideDirection * 28 }),
+                center: { opacity: 1, x: 0 },
+                exit: (slideDirection) => ({ opacity: 0, x: slideDirection * -28 }),
+              }}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="glass-card grid overflow-hidden rounded-3xl border border-slate-700/50 md:grid-cols-[minmax(250px,.72fr)_minmax(0,1.28fr)] lg:grid-cols-[minmax(300px,.85fr)_minmax(0,1.15fr)] xl:grid-cols-[1fr_1fr]"
             >
-              <div className={`h-24 bg-gradient-to-br ${project.gradient} pl-8 py-5 flex items-end relative overflow-hidden`}>
-                <div className="absolute -top-10 -right-10 opacity-20 transform group-hover:scale-110 transition-transform duration-500">
-                  {project.icon}
-                </div>
-                <div className="bg-slate-900/80 p-3 rounded-2xl backdrop-blur-sm border border-white/10">
-                  {project.icon}
-                </div>
-              </div>
+              <ProjectPreview project={project} />
 
-              <div className="p-8 flex-1 flex flex-col">
-                <div className="flex items-center gap-2 mb-3">
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  {project.joke && (
-                    <button
-                      onClick={() => toggleJoke(index)}
-                      className={`p-1.5 rounded-full transition-all focus:outline-none ${activeJokeIndex === index ? 'bg-purple-500/20 text-purple-400 rotate-12' : 'bg-slate-800 text-slate-400 hover:text-purple-400 hover:bg-slate-700'}`}
-                      title="More info"
-                    >
-                      <Info size={16} />
+              <div className="flex min-w-0 flex-col p-5 sm:p-7 md:p-8">
+                <div className="mb-3 flex items-start justify-between gap-4">
+                  <div>
+                    <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">{project.category}</p>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-2xl font-bold text-white md:text-3xl">{project.title}</h3>
+                      <button type="button" onClick={() => setShowJoke((value) => !value)} aria-label={`More about ${project.title}`} aria-expanded={showJoke} className={`shrink-0 rounded-full p-1.5 transition-all ${showJoke ? 'rotate-12 bg-purple-500/20 text-purple-400' : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-purple-400'}`}>
+                        <Info size={16} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <AnimatePresence>
+                  {showJoke && (
+                    <Motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="mb-4 overflow-hidden rounded-xl border border-purple-500/20 bg-purple-500/10 px-4 py-3 text-sm italic text-purple-300/90">
+                      {project.joke}
+                    </Motion.p>
+                  )}
+                </AnimatePresence>
+
+                <div className="mb-4">
+                  <p ref={setDescriptionElement} className={`text-sm leading-relaxed text-slate-300 sm:text-base ${expandedDescription ? '' : 'line-clamp-3 md:line-clamp-none'}`}>{project.description}</p>
+                  {descriptionCanExpand && (
+                    <button type="button" onClick={() => setExpandedDescription((value) => !value)} className="mt-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 md:hidden" aria-expanded={expandedDescription}>
+                      {expandedDescription ? 'Show less' : 'Read more'}
                     </button>
                   )}
                 </div>
 
-                <AnimatePresence>
-                  {project.joke && activeJokeIndex === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="overflow-hidden mb-4"
-                    >
-                      <div className="pb-1">
-                        <p className="text-sm text-purple-300/90 bg-purple-500/10 px-4 py-3 rounded-xl border border-purple-500/20 italic shadow-inner">
-                          {project.joke}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <p className="text-slate-300 leading-relaxed mb-6 flex-1">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech.map((t, i) => (
-                    <span key={i} className="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-medium rounded-full border border-slate-700">
-                      {t}
-                    </span>
+                <div className="hide-scrollbar -mx-1 mb-5 flex flex-nowrap gap-2 overflow-x-auto px-1 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0">
+                  {project.tech.map((technology) => (
+                    <span key={technology} className="shrink-0 rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300">{technology}</span>
                   ))}
                 </div>
 
-                <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-center gap-3 pt-6 border-t border-slate-700/50">
-                  {project.links && project.links.map((link, i) => (
-                    <a
-                      key={i}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={getButtonStyle(link)}
-                      title={link.label}
-                    >
-                      {getIcon(link)}
-                      <span className="truncate">{link.label}</span>
+                <div className="mt-auto flex items-center gap-2 border-t border-slate-700/50 pt-5 sm:gap-3">
+                  {project.links.map((link) => (
+                    <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className={getButtonStyle(link)} title={link.label}>
+                      {getIcon(link)}<span className="truncate">{link.label}</span>
                     </a>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </Motion.article>
+          </AnimatePresence>
+        </div>
+
+        <div className="mx-auto mt-5 flex max-w-6xl justify-center gap-2" aria-label="Choose project">
+          {projects.map((item, index) => (
+            <button key={item.title} type="button" onClick={() => moveToProject(index)} aria-label={`Show ${item.title}`} aria-current={currentIndex === index ? 'true' : undefined} className={`h-1.5 rounded-full transition-all ${currentIndex === index ? 'w-8 bg-sky-400' : 'w-2 bg-slate-700 hover:bg-slate-500'}`} />
           ))}
         </div>
       </div>

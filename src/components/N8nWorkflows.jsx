@@ -84,7 +84,7 @@ const N8nWorkflows = () => {
           
           <div className="max-w-2xl mx-auto">
             <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              I build workflows so we don't have to do the boring stuff anymore. From smart AI pipelines to wild API integrations, check out my published automations on my{' '}
+              I use n8n to connect APIs, automate repetitive work, and build AI-powered workflows. You can find my published automations on my{' '}
               <a 
                 href="https://n8n.io/creators/athaahsan/" 
                 target="_blank" 
