@@ -175,9 +175,9 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative py-20">
+    <section id="projects" className="portfolio-section">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 md:px-16 lg:px-24">
-        <Motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10 text-center md:mb-12">
+        <Motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="portfolio-section-heading">
           <h2 className="mb-4 text-4xl font-bold text-white">Featured Projects</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-sky-400 to-purple-500" />
         </Motion.div>

@@ -130,6 +130,27 @@ body {
   scrollbar-width: none;
 }
 
+/* Shared vertical rhythm for portfolio sections */
+.portfolio-section {
+  position: relative;
+  padding-block: 4rem;
+}
+
+.portfolio-section-heading {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .portfolio-section {
+    padding-block: 5rem;
+  }
+
+  .portfolio-section-heading {
+    margin-bottom: 4rem;
+  }
+}
+
 @keyframes tech-stack-marquee {
   from {
     transform: translateX(0);

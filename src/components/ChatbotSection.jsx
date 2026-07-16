@@ -158,13 +158,13 @@ const ChatbotSection = () => {
   };
 
   return (
-    <section id="chatbot" className="pt-20 pb-12 md:pb-14 relative">
+    <section id="chatbot" className="portfolio-section">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
         <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="portfolio-section-heading"
         >
           <h2 className="text-4xl font-bold text-white mb-4">Let's Chat</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-sky-400 to-purple-500 mx-auto rounded-full mb-6"></div>

@@ -28,13 +28,13 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 relative">
+    <section id="experience" className="portfolio-section">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="portfolio-section-heading"
         >
           <h2 className="text-4xl font-bold text-white mb-4">Experience</h2>
           <div className="w-20 h-1 bg-sky-500 mx-auto rounded-full"></div>

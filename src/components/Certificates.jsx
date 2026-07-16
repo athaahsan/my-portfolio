@@ -87,9 +87,9 @@ const Certificates = () => {
   };
 
   return (
-    <section id="certificates" className="relative bg-slate-900/50 py-20">
+    <section id="certificates" className="portfolio-section">
       <div className="mx-auto w-full max-w-7xl px-8 md:px-16 lg:px-24">
-        <Motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center">
+        <Motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="portfolio-section-heading">
           <h2 className="mb-4 text-4xl font-bold text-white">Certificates</h2>
           <div className="mx-auto h-1 w-20 rounded-full bg-pink-500" />
         </Motion.div>

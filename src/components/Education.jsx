@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Award, ExternalLink, Info, Calendar, ChevronDown } from 'lucide-react';
 
 const Education = () => {
@@ -7,20 +7,20 @@ const Education = () => {
   const [showCertificate, setShowCertificate] = useState(false);
 
   return (
-    <section id="education" className="py-20 relative bg-slate-900/50">
+    <section id="education" className="portfolio-section">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="portfolio-section-heading"
         >
           <h2 className="text-4xl font-bold text-white mb-4">Education</h2>
           <div className="w-20 h-1 bg-purple-500 mx-auto rounded-full"></div>
-        </motion.div>
+        </Motion.div>
 
         <div className="max-w-4xl mx-auto">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -51,7 +51,7 @@ const Education = () => {
                     </div>
                     <AnimatePresence>
                       {showJoke && (
-                        <motion.div
+                        <Motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
@@ -62,7 +62,7 @@ const Education = () => {
                               Missed summa cum laude by 0.01, close enough to hurt, far enough to stay humble.
                             </p>
                           </div>
-                        </motion.div>
+                        </Motion.div>
                       )}
                     </AnimatePresence>
                   </div>
@@ -108,7 +108,7 @@ const Education = () => {
                   </button>
                   <AnimatePresence>
                     {showCertificate && (
-                      <motion.div
+                      <Motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -127,14 +127,14 @@ const Education = () => {
                             />
                           </div>
                         </div>
-                      </motion.div>
+                      </Motion.div>
                     )}
                   </AnimatePresence>
                 </div>
               </div>
             </div>
 
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
     </section>

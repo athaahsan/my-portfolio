@@ -68,14 +68,14 @@ const N8nWorkflows = () => {
   }, [isPaused, workflows.length]);
 
   return (
-    <section id="n8n-creator" className="py-20 relative">
+    <section id="n8n-creator" className="portfolio-section">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
         {/* Copywriting section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 text-center"
+          className="portfolio-section-heading"
         >
           <div className="flex justify-center items-center gap-3 mb-4">
             <h2 className="text-4xl font-bold text-white">Verified n8n Creator</h2>
