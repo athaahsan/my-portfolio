@@ -113,7 +113,7 @@ const ProjectPreview = ({ project }) => {
         onLoad={() => setLoaded(true)}
         tabIndex="-1"
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 h-[200%] w-[200%] origin-top-left scale-50 border-0 bg-slate-950 opacity-95 transition-opacity group-hover/preview:opacity-100 md:h-[160%] md:w-[160%] md:scale-[0.625]"
+        className="pointer-events-none absolute left-0 top-0 h-[280%] w-[280%] origin-top-left scale-[0.357143] border-0 bg-slate-950 opacity-95 transition-opacity group-hover/preview:opacity-100 md:h-[160%] md:w-[160%] md:scale-[0.625]"
       />
     </a>
   );
