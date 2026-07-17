@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { Briefcase, Calendar } from 'lucide-react';
+import { useState } from 'react';
+import { motion as Motion } from 'framer-motion';
+import { Briefcase, Calendar, ChevronDown } from 'lucide-react';
 
 const experiences = [
   {
@@ -7,6 +8,7 @@ const experiences = [
     company: "PT Beon Intermedia",
     date: "Jan 2026 – Present",
     type: "Contract",
+    collapseLastOnMobile: true,
     highlights: [
       "Designed and maintained n8n-based automation workflows for SaaS products and internal workflow prototypes, including integration with Google Apps Script for dynamic, user-specific credential handling.",
       "Integrated LLM capabilities into automation workflows, performing prompt engineering and AI-driven logic.",
@@ -27,10 +29,12 @@ const experiences = [
 ];
 
 const Experience = () => {
+  const [expandedHighlights, setExpandedHighlights] = useState({});
+
   return (
     <section id="experience" className="portfolio-section">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,11 +42,11 @@ const Experience = () => {
         >
           <h2 className="text-4xl font-bold text-white mb-4">Experience</h2>
           <div className="w-20 h-1 bg-sky-500 mx-auto rounded-full"></div>
-        </motion.div>
+        </Motion.div>
 
         <div className="max-w-4xl mx-auto">
           {experiences.map((exp, index) => (
-            <motion.div
+            <Motion.div
               key={index}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -86,15 +90,41 @@ const Experience = () => {
                 </div>
 
                 <ul className="space-y-3">
-                  {exp.highlights.map((highlight, i) => (
-                    <li key={i} className="flex items-start gap-3 text-slate-300">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
-                      <span className="leading-relaxed text-sm md:text-base">{highlight}</span>
-                    </li>
-                  ))}
+                  {exp.highlights.map((highlight, i) => {
+                    const isLastHighlight = i === exp.highlights.length - 1;
+                    const isCollapsedOnMobile = exp.collapseLastOnMobile && isLastHighlight && !expandedHighlights[index];
+
+                    return (
+                      <li
+                        key={i}
+                        className={`${isCollapsedOnMobile ? 'hidden sm:flex' : 'flex'} items-start gap-3 text-slate-300`}
+                      >
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                        <span className="leading-relaxed text-sm md:text-base">{highlight}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
+
+                {exp.collapseLastOnMobile && (
+                  <button
+                    type="button"
+                    aria-expanded={Boolean(expandedHighlights[index])}
+                    onClick={() => setExpandedHighlights((current) => ({
+                      ...current,
+                      [index]: !current[index],
+                    }))}
+                    className="mt-4 flex items-center gap-1.5 text-sm font-medium text-sky-400 transition-colors hover:text-sky-300 sm:hidden"
+                  >
+                    {expandedHighlights[index] ? 'Show less' : 'Read more'}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${expandedHighlights[index] ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                )}
               </div>
-            </motion.div>
+            </Motion.div>
           ))}
         </div>
       </div>

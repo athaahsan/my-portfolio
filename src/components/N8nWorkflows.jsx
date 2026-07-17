@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Award } from 'lucide-react';
-import n8nLogo from '../assets/n8n.svg';
+import { motion as Motion } from 'framer-motion';
+import { Check, ExternalLink } from 'lucide-react';
 
 const N8nWorkflows = () => {
   const [workflows, setWorkflows] = useState([]);
@@ -71,14 +70,23 @@ const N8nWorkflows = () => {
     <section id="n8n-creator" className="portfolio-section">
       <div className="w-full max-w-7xl mx-auto px-8 md:px-16 lg:px-24">
         {/* Copywriting section */}
-        <motion.div 
+        <Motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="portfolio-section-heading"
         >
-          <div className="flex justify-center items-center gap-3 mb-4">
-            <h2 className="text-4xl font-bold text-white">Verified n8n Creator</h2>
+          <div className="mb-4 text-center">
+            <h2 className="text-4xl font-bold text-white">
+              Verified n8n Creator{' '}
+              <span
+                aria-label="Verified n8n creator"
+                title="Verified n8n creator"
+                className="relative -top-0.5 ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#ff4f1f] align-middle text-[#160b12] shadow-[0_0_0_3px_rgba(255,79,31,0.08)]"
+              >
+                <Check size={13} strokeWidth={3.5} />
+              </span>
+            </h2>
           </div>
           <div className="w-20 h-1 bg-gradient-to-r from-rose-400 to-orange-500 mx-auto rounded-full mb-8"></div>
           
@@ -96,7 +104,7 @@ const N8nWorkflows = () => {
               </a>.
             </p>
           </div>
-        </motion.div>
+        </Motion.div>
 
         {/* Workflows list */}
         <div className="relative w-full">
@@ -114,7 +122,7 @@ const N8nWorkflows = () => {
               className="flex items-stretch overflow-x-auto pb-8 -mx-4 px-4 md:-mx-8 md:px-8 hide-scrollbar gap-4 md:gap-6"
             >
               {[...workflows, ...workflows, ...workflows].map((workflow, index) => (
-                <motion.div
+                <Motion.div
                   key={`${workflow.id}-${index}`}
                   ref={(el) => (itemRefs.current[index] = el)}
                   initial={{ opacity: 0, y: 20 }}
@@ -147,7 +155,7 @@ const N8nWorkflows = () => {
                     <span className="text-sm font-medium">View Workflow</span>
                     <ExternalLink size={16} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
-                </motion.div>
+                </Motion.div>
               ))}
             </div>
           ) : (
