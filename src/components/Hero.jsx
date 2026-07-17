@@ -1,5 +1,5 @@
 import { motion as Motion } from 'framer-motion';
-import { Mail, ChevronDown, ArrowRight } from 'lucide-react';
+import { Mail, ArrowRight } from 'lucide-react';
 import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 import profilePic from '../assets/athaPic10.jpeg';
 
@@ -78,14 +78,6 @@ const Hero = () => {
           </Motion.div>
         </div>
       </div>
-
-      <Motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="hidden md:block absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-slate-400"
-      >
-        <ChevronDown size={32} />
-      </Motion.div>
     </section>
   );
 };

@@ -24,11 +24,8 @@ const Education = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="glass-card p-8 md:p-10 rounded-3xl border border-purple-500/20 relative overflow-hidden"
+            className="glass-card accent-card accent-card-purple p-8 md:p-10 rounded-3xl border border-purple-500/20 relative overflow-hidden"
           >
-            {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-
             <div className="flex flex-col sm:flex-row justify-between items-start gap-6 relative z-10">
               <div className="flex flex-col md:flex-row items-start gap-4">
                 <div className="p-3 md:p-4 bg-purple-500/20 rounded-2xl text-purple-400 shrink-0">

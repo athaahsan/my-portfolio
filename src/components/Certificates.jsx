@@ -119,7 +119,7 @@ const Certificates = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.12 }}
-              className="glass-card group flex w-full shrink-0 snap-start flex-col rounded-3xl border border-slate-700 p-6 transition-all hover:border-pink-500/50 md:w-[calc((100%-1.5rem)/2)] xl:w-[calc((100%-3rem)/3)]"
+              className="glass-card accent-card accent-card-pink group flex w-full shrink-0 snap-start flex-col rounded-3xl border border-slate-700 p-6 transition-all hover:border-pink-500/50 md:w-[calc((100%-1.5rem)/2)] xl:w-[calc((100%-3rem)/3)]"
             >
               <div className="mb-6 flex items-start justify-between">
                 <div className="rounded-2xl bg-pink-500/10 p-3 text-pink-400 transition-colors group-hover:bg-pink-500 group-hover:text-white">

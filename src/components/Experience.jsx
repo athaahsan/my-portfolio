@@ -65,7 +65,7 @@ const Experience = () => {
                 <span className="text-sm font-medium text-sky-400">{exp.date}</span>
               </div>
 
-              <div className="glass-card p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+              <div className="glass-card accent-card accent-card-sky p-6 md:p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-white mb-1 flex items-center gap-2">
