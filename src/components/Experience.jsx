@@ -6,7 +6,7 @@ const experiences = [
   {
     role: "Business Development Officer – Data Scientist Function",
     company: "PT Beon Intermedia",
-    date: "Jan 2026 – Present",
+    date: "Jan 2026 – Jul 2026",
     type: "Contract",
     collapseLastOnMobile: true,
     highlights: [
