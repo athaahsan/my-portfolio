@@ -97,7 +97,7 @@ const N8nWorkflows = () => {
                 href="https://n8n.io/creators/athaahsan/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group text-rose-300 hover:text-rose-400 font-medium underline underline-offset-[6px] decoration-rose-500/50 decoration-dashed hover:decoration-rose-400 hover:decoration-solid transition-all duration-300 whitespace-nowrap"
+                className="group whitespace-nowrap font-medium text-[#FF4F1F] underline decoration-[#FF4F1F]/50 decoration-dashed underline-offset-[6px] transition-all duration-300 hover:text-[#ff6a43] hover:decoration-[#FF4F1F] hover:decoration-solid"
               >
                 n8n Creator Profile
                 <ExternalLink size={14} className="inline-block ml-1.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 relative -top-0.5" />
@@ -119,7 +119,7 @@ const N8nWorkflows = () => {
               onMouseLeave={() => setIsPaused(false)}
               onTouchStart={() => setIsPaused(true)}
               onTouchEnd={() => setIsPaused(false)}
-              className="flex items-stretch overflow-x-auto pb-8 -mx-4 px-4 md:-mx-8 md:px-8 hide-scrollbar gap-4 md:gap-6"
+              className="horizontal-edge-fade flex items-stretch overflow-x-auto pb-8 -mx-4 px-4 md:-mx-8 md:px-8 hide-scrollbar gap-4 md:gap-6"
             >
               {[...workflows, ...workflows, ...workflows].map((workflow, index) => (
                 <Motion.div
@@ -130,12 +130,10 @@ const N8nWorkflows = () => {
                   viewport={{ once: true }}
                   transition={{ delay: (index % workflows.length) * 0.1 }}
                   onClick={() => window.open(workflow.url, '_blank')}
-                  className="shrink-0 w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] glass-card rounded-2xl border border-slate-700/50 hover:border-rose-500/40 p-6 flex flex-col bg-slate-800/40 cursor-pointer group transition-all relative overflow-hidden"
+                  className="accent-card accent-card-n8n glass-card group relative flex w-[85vw] shrink-0 cursor-pointer flex-col overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-800/40 p-6 transition-all hover:border-[#FF4F1F]/40 sm:w-[320px] md:w-[350px] lg:w-[380px]"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 rounded-full blur-[40px] group-hover:bg-rose-500/10 transition-colors duration-500"></div>
-                  
                   <div className="flex-1 relative z-10">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-rose-400 transition-colors line-clamp-2">
+                    <h3 className="mb-3 line-clamp-2 text-xl font-bold text-white">
                       {workflow.title}
                     </h3>
                     
@@ -143,7 +141,7 @@ const N8nWorkflows = () => {
                       {workflow.categories && workflow.categories.map((category, idx) => (
                         <span 
                           key={idx} 
-                          className="px-3 py-1 bg-slate-900/80 text-rose-300/90 text-xs font-small rounded-full border border-rose-500/20"
+                          className="rounded-full border border-slate-700 bg-slate-800 px-3 py-1 text-xs font-medium text-slate-300"
                         >
                           {category}
                         </span>
@@ -151,7 +149,7 @@ const N8nWorkflows = () => {
                     </div>
                   </div>
                   
-                  <div className="mt-6 pt-4 border-t border-slate-700/50 flex items-center justify-between text-slate-400 group-hover:text-rose-400 transition-colors relative z-10">
+                  <div className="relative z-10 mt-6 flex items-center justify-between border-t border-slate-700/50 pt-4 text-slate-400 transition-colors group-hover:text-[#FF4F1F]">
                     <span className="text-sm font-medium">View Workflow</span>
                     <ExternalLink size={16} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>

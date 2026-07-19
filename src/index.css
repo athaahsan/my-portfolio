@@ -95,6 +95,14 @@ body {
   --card-edge-color: rgba(236, 72, 153, 0.1);
 }
 
+.accent-card-emerald {
+  --card-edge-color: rgba(16, 185, 129, 0.11);
+}
+
+.accent-card-n8n {
+  --card-edge-color: rgba(255, 79, 31, 0.11);
+}
+
 .text-gradient {
   background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
   -webkit-background-clip: text;
@@ -181,7 +189,8 @@ body {
   }
 }
 
-.tech-stack-marquee-window {
+.tech-stack-marquee-window,
+.horizontal-edge-fade {
   -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }

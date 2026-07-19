@@ -16,6 +16,7 @@ const projects = [
       { type: 'demo', url: 'https://chatbot.athaahsan.com/', label: 'Live Demo', primary: true },
     ],
     gradient: 'from-sky-500/20 to-blue-500/20',
+    accentClass: 'accent-card-sky',
   },
   {
     title: 'Video Automation',
@@ -30,6 +31,7 @@ const projects = [
       { type: 'case-study', url: 'https://github.com/athaahsan/twitch-clips-to-youtube-shorts', label: 'Case Study', primary: false },
     ],
     gradient: 'from-emerald-500/20 to-teal-500/20',
+    accentClass: 'accent-card-emerald',
   },
   {
     title: 'Crypto Dashboard',
@@ -43,6 +45,7 @@ const projects = [
       { type: 'telegram', url: 'https://t.me/dailybtcinsightbot', label: 'Telegram Bot', primary: false },
     ],
     gradient: 'from-purple-500/20 to-pink-500/20',
+    accentClass: 'accent-card-purple',
   },
 ];
 
@@ -214,7 +217,7 @@ const Projects = () => {
             >
               <ProjectPreview project={project} />
 
-              <div className="flex min-w-0 flex-col p-5 sm:p-7 md:p-8">
+              <div className={`accent-card ${project.accentClass} flex min-w-0 flex-col p-5 sm:p-7 md:p-8`}>
                 <div className="mb-3 flex items-start justify-between gap-4">
                   <div>
                     <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">{project.category}</p>
