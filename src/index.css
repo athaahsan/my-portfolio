@@ -119,6 +119,27 @@ body {
   content: none;
 }
 
+@keyframes portrait-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(1.01);
+    filter: blur(13px);
+  }
+
+  50% {
+    opacity: 0.68;
+    transform: scale(1.08);
+    filter: blur(19px);
+  }
+}
+
+.portrait-glow-breathe {
+  animation: portrait-glow-breathe 5.8s ease-in-out infinite;
+  transform-origin: center;
+  will-change: opacity, transform, filter;
+}
+
 /* Global Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -205,6 +226,13 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .portrait-glow-breathe {
+    animation: none;
+    opacity: 0.5;
+    transform: none;
+    filter: blur(16px);
+  }
+
   .tech-stack-marquee-window {
     overflow-x: auto;
     -webkit-mask-image: none;

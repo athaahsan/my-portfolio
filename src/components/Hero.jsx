@@ -66,7 +66,7 @@ const Hero = () => {
           >
             <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mt-6 md:mt-0 mb-6">
               <div className="relative w-full h-full rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600 p-[3px] shadow-[0_0_40px_rgba(14,165,233,0.3)] z-10 group">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600 blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                <div className="portrait-glow-breathe absolute inset-0 rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600"></div>
                 <div className="relative w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden border-[6px] border-slate-900">
                   <img src={profilePic} alt="Atha Ahsan" className="w-full h-full object-cover transition-transform duration-700" />
                 </div>

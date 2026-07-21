@@ -97,7 +97,7 @@ const N8nWorkflows = () => {
                 href="https://n8n.io/creators/athaahsan/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group whitespace-nowrap font-medium text-[#FF4F1F] underline decoration-[#FF4F1F]/50 decoration-dashed underline-offset-[6px] transition-all duration-300 hover:text-[#ff6a43] hover:decoration-[#FF4F1F] hover:decoration-solid"
+                className="group whitespace-nowrap font-medium text-slate-200 underline decoration-slate-500/60 decoration-dashed underline-offset-[6px] transition-all duration-300 hover:text-[#FF4F1F] hover:decoration-[#FF4F1F] hover:decoration-solid focus-visible:text-[#FF4F1F] focus-visible:decoration-[#FF4F1F] focus-visible:decoration-solid focus-visible:outline-none"
               >
                 n8n Creator Profile
                 <ExternalLink size={14} className="inline-block ml-1.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 relative -top-0.5" />
