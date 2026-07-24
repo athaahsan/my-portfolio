@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion as Motion } from 'framer-motion';
 import { Check, ExternalLink } from 'lucide-react';
+import { SiN8N } from 'react-icons/si';
 
 const N8nWorkflows = () => {
   const [workflows, setWorkflows] = useState([]);
@@ -90,18 +91,21 @@ const N8nWorkflows = () => {
           </div>
           <div className="w-20 h-1 bg-gradient-to-r from-rose-400 to-orange-500 mx-auto rounded-full mb-8"></div>
           
-          <div className="max-w-2xl mx-auto">
-            <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              I use n8n to connect APIs, automate repetitive work, and build AI-powered workflows. You can find my published automations on my{' '}
-              <a 
-                href="https://n8n.io/creators/athaahsan/" 
-                target="_blank" 
+          <div className="mx-auto max-w-2xl">
+            <p className="text-lg leading-relaxed text-slate-300">
+              I use n8n to connect APIs, automate repetitive work, and build AI-powered workflows. You can find my published automations on{' '}
+              <a
+                href="https://n8n.io/creators/athaahsan/"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="group whitespace-nowrap font-medium text-slate-200 underline decoration-slate-500/60 decoration-dashed underline-offset-[6px] transition-all duration-300 hover:text-[#FF4F1F] hover:decoration-[#FF4F1F] hover:decoration-solid focus-visible:text-[#FF4F1F] focus-visible:decoration-[#FF4F1F] focus-visible:decoration-solid focus-visible:outline-none"
+                aria-label="View Atha's n8n creator profile"
+                className="group inline-flex items-center align-middle focus-visible:outline-none"
               >
-                n8n Creator Profile
-                <ExternalLink size={14} className="inline-block ml-1.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 relative -top-0.5" />
-              </a>.
+                <span className="inline-flex items-center gap-2 rounded-full border border-slate-700/70 bg-slate-800/60 px-3 py-1 text-sm text-slate-200 shadow-sm transition-colors duration-200 group-hover:border-[#FF4F1F]/60 group-hover:bg-slate-800/90 group-hover:text-white group-focus-visible:border-[#FF4F1F] group-focus-visible:ring-2 group-focus-visible:ring-[#FF4F1F]/30">
+                  <SiN8N size={17} aria-hidden="true" className="text-[#FF4F1F]" />
+                  <span className="font-medium">@athaahsan</span>
+                </span>
+              </a>
             </p>
           </div>
         </Motion.div>

@@ -46,9 +46,12 @@ body {
   background-image:
     linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 18% 14%, rgba(14, 165, 233, 0.085) 0%, transparent 30%),
+    radial-gradient(circle at 82% 38%, rgba(139, 92, 246, 0.07) 0%, transparent 32%),
+    radial-gradient(circle at 44% 88%, rgba(37, 99, 235, 0.045) 0%, transparent 34%),
     linear-gradient(180deg, #0f172a 0%, #111827 48%, #0f172a 100%);
-  background-size: 38px 38px, 38px 38px, auto;
-  background-position: center top;
+  background-size: 38px 38px, 38px 38px, auto, auto, auto, auto;
+  background-position: center top, center top, center, center, center, center;
 }
 
 .portfolio-backdrop::after {
