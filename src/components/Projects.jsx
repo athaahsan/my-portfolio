@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion as Motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ExternalLink, Info } from 'lucide-react';
+import { ExternalLink, Info } from 'lucide-react';
 import { FaGithub, FaYoutube } from 'react-icons/fa';
 import telegramIcon from '../assets/telegram.svg';
 
@@ -122,60 +122,75 @@ const ProjectPreview = ({ project }) => {
   );
 };
 
-const Projects = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [expandedDescription, setExpandedDescription] = useState(false);
-  const [descriptionCanExpand, setDescriptionCanExpand] = useState(false);
+const getButtonStyle = (link) => {
+  const baseStyle = 'group flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-300 sm:px-4 md:text-base';
+  if (link.primary && link.type === 'youtube') return `${baseStyle} border-red-600 bg-red-600 text-white shadow-lg shadow-red-600/20 hover:bg-red-500`;
+  if (link.primary) return `${baseStyle} border-sky-500 bg-sky-500 text-white shadow-lg shadow-sky-500/20 hover:bg-sky-400`;
+  if (link.type === 'telegram') return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-[#229ED9]/50 hover:text-[#229ED9]`;
+  if (link.type === 'case-study') return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-emerald-500/50 hover:text-emerald-300`;
+  return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-600 hover:text-white`;
+};
+
+const getIcon = (link) => {
+  if (link.type === 'telegram') return <img src={telegramIcon} alt="Telegram" className="h-[18px] w-[18px] opacity-70 transition-opacity group-hover:opacity-100" />;
+  if (link.type === 'youtube') return <FaYoutube size={18} />;
+  if (link.type === 'case-study') return <FaGithub size={18} />;
+  return <ExternalLink size={18} />;
+};
+
+const ProjectCard = ({ project, index }) => {
   const [showJoke, setShowJoke] = useState(false);
-  const [descriptionElement, setDescriptionElement] = useState(null);
-  const project = projects[currentIndex];
 
-  useEffect(() => {
-    const description = descriptionElement;
-    if (!description) return undefined;
+  return (
+    <Motion.article
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12 }}
+      transition={{ duration: 0.45, delay: index * 0.06, ease: 'easeOut' }}
+      className="glass-card grid overflow-hidden rounded-3xl border border-slate-700/50 md:grid-cols-[minmax(250px,.72fr)_minmax(0,1.28fr)] lg:grid-cols-[minmax(300px,.85fr)_minmax(0,1.15fr)] xl:grid-cols-[1fr_1fr]"
+    >
+      <ProjectPreview project={project} />
 
-    const measureOverflow = () => {
-      if (!description.classList.contains('line-clamp-3')) return;
-      setDescriptionCanExpand(description.scrollHeight > description.clientHeight + 1);
-    };
+      <div className={`accent-card ${project.accentClass} flex min-w-0 flex-col p-5 sm:p-7 md:p-8`}>
+        <div className="mb-3 flex items-start justify-between gap-4">
+          <div>
+            <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">{project.category}</p>
+            <div className="flex items-center gap-2">
+              <h3 className="text-2xl font-bold text-white md:text-3xl">{project.title}</h3>
+              <button type="button" onClick={() => setShowJoke((value) => !value)} aria-label={`More about ${project.title}`} aria-expanded={showJoke} className={`shrink-0 rounded-full p-1.5 transition-all ${showJoke ? 'rotate-12 bg-purple-500/20 text-purple-400' : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-purple-400'}`}>
+                <Info size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
 
-    const animationFrame = requestAnimationFrame(measureOverflow);
-    const resizeObserver = new ResizeObserver(measureOverflow);
-    resizeObserver.observe(description);
-    window.addEventListener('resize', measureOverflow);
+        <AnimatePresence>
+          {showJoke && (
+            <Motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="mb-4 overflow-hidden rounded-xl border border-purple-500/20 bg-purple-500/10 px-4 py-3 text-sm italic text-purple-300/90">
+              {project.joke}
+            </Motion.p>
+          )}
+        </AnimatePresence>
 
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      resizeObserver.disconnect();
-      window.removeEventListener('resize', measureOverflow);
-    };
-  }, [descriptionElement]);
+        <div className="mb-4">
+          <p className="text-sm leading-relaxed text-slate-300 sm:text-base">{project.description}</p>
+        </div>
 
-  const moveToProject = (nextIndex) => {
-    if (nextIndex < 0 || nextIndex >= projects.length || nextIndex === currentIndex) return;
-    setDirection(nextIndex > currentIndex ? 1 : -1);
-    setCurrentIndex(nextIndex);
-    setExpandedDescription(false);
-    setDescriptionCanExpand(false);
-    setShowJoke(false);
-  };
+        <TechStack technologies={project.tech} />
 
-  const getButtonStyle = (link) => {
-    const baseStyle = 'group flex min-w-0 flex-1 items-center justify-center gap-2 rounded-xl border px-3 py-2.5 text-sm font-medium transition-all duration-300 sm:px-4 md:text-base';
-    if (link.primary && link.type === 'youtube') return `${baseStyle} border-red-600 bg-red-600 text-white shadow-lg shadow-red-600/20 hover:bg-red-500`;
-    if (link.primary) return `${baseStyle} border-sky-500 bg-sky-500 text-white shadow-lg shadow-sky-500/20 hover:bg-sky-400`;
-    if (link.type === 'telegram') return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-[#229ED9]/50 hover:text-[#229ED9]`;
-    if (link.type === 'case-study') return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-emerald-500/50 hover:text-emerald-300`;
-    return `${baseStyle} border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-600 hover:text-white`;
-  };
+        <div className="mt-auto flex items-center gap-2 border-t border-slate-700/50 pt-5 sm:gap-3">
+          {project.links.map((link) => (
+            <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className={getButtonStyle(link)} title={link.label}>
+              {getIcon(link)}<span className="truncate">{link.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </Motion.article>
+  );
+};
 
-  const getIcon = (link) => {
-    if (link.type === 'telegram') return <img src={telegramIcon} alt="Telegram" className="h-[18px] w-[18px] opacity-70 transition-opacity group-hover:opacity-100" />;
-    if (link.type === 'youtube') return <FaYoutube size={18} />;
-    if (link.type === 'case-study') return <FaGithub size={18} />;
-    return <ExternalLink size={18} />;
-  };
+const Projects = () => {
 
   return (
     <section id="projects" className="portfolio-section">
@@ -185,85 +200,9 @@ const Projects = () => {
           <div className="mx-auto h-1 w-20 rounded-full bg-gradient-to-r from-sky-400 to-purple-500" />
         </Motion.div>
 
-        <div className="mx-auto mb-4 flex max-w-6xl items-center justify-between">
-          <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-slate-500" aria-live="polite">
-            {String(currentIndex + 1).padStart(2, '0')}<span className="mx-2 text-slate-700">/</span>{String(projects.length).padStart(2, '0')}
-          </p>
-          <div className="flex items-center gap-2">
-            <button type="button" onClick={() => moveToProject(currentIndex - 1)} disabled={currentIndex === 0} aria-label="Show previous project" className="grid h-10 w-10 place-items-center rounded-full border border-slate-700 bg-slate-800/60 text-slate-300 transition hover:border-sky-400/40 hover:text-sky-300 disabled:cursor-not-allowed disabled:opacity-30 sm:h-11 sm:w-11">
-              <ChevronLeft size={20} />
-            </button>
-            <button type="button" onClick={() => moveToProject(currentIndex + 1)} disabled={currentIndex === projects.length - 1} aria-label="Show next project" className="grid h-10 w-10 place-items-center rounded-full border border-slate-700 bg-slate-800/60 text-slate-300 transition hover:border-sky-400/40 hover:text-sky-300 disabled:cursor-not-allowed disabled:opacity-30 sm:h-11 sm:w-11">
-              <ChevronRight size={20} />
-            </button>
-          </div>
-        </div>
-
-        <div role="region" aria-label="Featured projects carousel" className="mx-auto max-w-6xl overflow-hidden rounded-3xl focus:outline-none">
-          <AnimatePresence mode="wait" initial={false} custom={direction}>
-            <Motion.article
-              key={project.title}
-              custom={direction}
-              variants={{
-                enter: (slideDirection) => ({ opacity: 0, x: slideDirection * 28 }),
-                center: { opacity: 1, x: 0 },
-                exit: (slideDirection) => ({ opacity: 0, x: slideDirection * -28 }),
-              }}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="glass-card grid overflow-hidden rounded-3xl border border-slate-700/50 md:grid-cols-[minmax(250px,.72fr)_minmax(0,1.28fr)] lg:grid-cols-[minmax(300px,.85fr)_minmax(0,1.15fr)] xl:grid-cols-[1fr_1fr]"
-            >
-              <ProjectPreview project={project} />
-
-              <div className={`accent-card ${project.accentClass} flex min-w-0 flex-col p-5 sm:p-7 md:p-8`}>
-                <div className="mb-3 flex items-start justify-between gap-4">
-                  <div>
-                    <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">{project.category}</p>
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-2xl font-bold text-white md:text-3xl">{project.title}</h3>
-                      <button type="button" onClick={() => setShowJoke((value) => !value)} aria-label={`More about ${project.title}`} aria-expanded={showJoke} className={`shrink-0 rounded-full p-1.5 transition-all ${showJoke ? 'rotate-12 bg-purple-500/20 text-purple-400' : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-purple-400'}`}>
-                        <Info size={16} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <AnimatePresence>
-                  {showJoke && (
-                    <Motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="mb-4 overflow-hidden rounded-xl border border-purple-500/20 bg-purple-500/10 px-4 py-3 text-sm italic text-purple-300/90">
-                      {project.joke}
-                    </Motion.p>
-                  )}
-                </AnimatePresence>
-
-                <div className="mb-4">
-                  <p ref={setDescriptionElement} className={`text-sm leading-relaxed text-slate-300 sm:text-base ${expandedDescription ? '' : 'line-clamp-3 md:line-clamp-none'}`}>{project.description}</p>
-                  {descriptionCanExpand && (
-                    <button type="button" onClick={() => setExpandedDescription((value) => !value)} className="mt-1.5 text-xs font-semibold text-sky-400 hover:text-sky-300 md:hidden" aria-expanded={expandedDescription}>
-                      {expandedDescription ? 'Show less' : 'Read more'}
-                    </button>
-                  )}
-                </div>
-
-                <TechStack key={project.title} technologies={project.tech} />
-
-                <div className="mt-auto flex items-center gap-2 border-t border-slate-700/50 pt-5 sm:gap-3">
-                  {project.links.map((link) => (
-                    <a key={link.label} href={link.url} target="_blank" rel="noopener noreferrer" className={getButtonStyle(link)} title={link.label}>
-                      {getIcon(link)}<span className="truncate">{link.label}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </Motion.article>
-          </AnimatePresence>
-        </div>
-
-        <div className="mx-auto mt-5 flex max-w-6xl justify-center gap-2" aria-label="Choose project">
-          {projects.map((item, index) => (
-            <button key={item.title} type="button" onClick={() => moveToProject(index)} aria-label={`Show ${item.title}`} aria-current={currentIndex === index ? 'true' : undefined} className={`h-1.5 rounded-full transition-all ${currentIndex === index ? 'w-8 bg-sky-400' : 'w-2 bg-slate-700 hover:bg-slate-500'}`} />
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 md:gap-10">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>
