@@ -260,9 +260,6 @@ const ChatbotSection = () => {
                               className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"
                             />
                           </div>
-                          <span className="text-xs font-semibold tracking-wide bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
-                            Thinking...
-                          </span>
                         </div>
                       ) : (
                         <div className="prose prose-invert max-w-none break-words prose-p:leading-relaxed prose-p:first:mt-0 prose-p:last:mb-0 prose-pre:bg-slate-800/80 prose-pre:border prose-pre:border-slate-700/50 prose-a:text-sky-400 hover:prose-a:text-sky-300">

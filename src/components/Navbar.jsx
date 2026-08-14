@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { name: 'Projects', href: '#projects' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Chat', href: '#chatbot' },
+  { name: 'AI Chat', href: '#chatbot' },
 ];
 
 const Navbar = () => {
