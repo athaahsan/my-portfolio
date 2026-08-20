@@ -1,11 +1,11 @@
 import { motion as Motion } from 'framer-motion';
-import { Mail, ArrowRight } from 'lucide-react';
+import { Mail, ArrowRight, MapPin } from 'lucide-react';
 import { FaGithub as Github, FaLinkedin as Linkedin } from 'react-icons/fa';
 import profilePic from '../assets/athaPic10.jpeg';
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-x-hidden bg-gradient-mesh">
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-[68px] md:pt-20 overflow-x-hidden bg-gradient-mesh">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-16 lg:px-24 relative z-10">
         <div className="flex flex-col-reverse md:flex-row items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16">
 
@@ -28,9 +28,17 @@ const Hero = () => {
             </h1>
 
             <div className="mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0">
-              <p className="mb-4 inline-block text-sm font-medium leading-relaxed text-slate-400 sm:text-base md:text-lg lg:text-xl">
+              <p className="mb-3 inline-block text-sm font-medium leading-relaxed text-slate-400 sm:text-base md:text-lg lg:text-xl">
                 Applied AI &amp; Automation Developer
               </p>
+              <div className="flex flex-col items-center justify-center gap-1 text-xs text-slate-500 sm:flex-row sm:gap-2 sm:text-sm md:justify-start">
+                <span className="inline-flex items-center gap-1.5">
+                  <MapPin size={15} aria-hidden="true" />
+                  Based in Indonesia
+                </span>
+                <span className="hidden text-slate-600 sm:inline" aria-hidden="true">•</span>
+                <span>Open to opportunities worldwide</span>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-center gap-6 justify-center md:justify-start mt-6 md:mt-8">
@@ -64,7 +72,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex-1 flex flex-col justify-center items-center w-full"
           >
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mt-6 md:mt-0 mb-6">
+            <div className="relative mt-2 mb-2 h-32 w-32 sm:mt-4 sm:mb-4 sm:h-40 sm:w-40 md:mt-0 md:mb-6 md:h-48 md:w-48 lg:h-56 lg:w-56 xl:h-64 xl:w-64">
               <div className="relative w-full h-full rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600 p-[3px] shadow-[0_0_40px_rgba(14,165,233,0.3)] z-10 group">
                 <div className="portrait-glow-breathe absolute inset-0 rounded-full bg-gradient-to-tr from-sky-400 via-blue-500 to-purple-600"></div>
                 <div className="relative w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden border-[6px] border-slate-900">
